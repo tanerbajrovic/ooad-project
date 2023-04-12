@@ -2,10 +2,12 @@
 
 ## Design
 
-- [Project specifications (BHS)](project-specifications-bhs-final.pdf)
+- [Project specifications (BHS)](project-specifications-bhs-v3.pdf)
 - [Use case scenarios (BHS)](use-case-scenarios-bhs-v2.pdf)
-- [Use case diagram (BHS)](use-case-diagram-bhs-final.pdf)
-- [Activity diagrams (BHS)](activity-diagrams-bhs-final.pdf)
-- [Analysis and system design (BHS)](analysis-and-system-design-bhs.pdf)
+- [Use case diagram (BHS)](use-case-diagram-bhs-v1.pdf)
+- [Activity diagrams (BHS)](activity-diagrams-bhs-v2.pdf)
+- [Analysis and system design (BHS)](analysis-and-system-design-bhs-v1.pdf)
+
+Previous versions of the files above may be found in the `docs/archived` folder.
 
 ## Documentation
