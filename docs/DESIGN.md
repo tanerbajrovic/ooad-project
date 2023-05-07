@@ -7,7 +7,7 @@
 - [Use case diagram (BHS)](use-case-diagram-bhs-v1.pdf)
 - [Activity diagrams (BHS)](activity-diagrams-bhs-v2.pdf)
 - [Analysis and system design (BHS)](analysis-and-system-design-bhs-v2.pdf)
-- [Class diagram (BHS)](class_diagram_v2.pdf)
+- [Class diagram (BHS)](class-diagram-v3.pdf)
 - [SOLID Principles (BHS)](solid-principles-bhs-v1.pdf)
 
 Previous versions of the files above may be found in the `docs/archived` folder.
