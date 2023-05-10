@@ -7,36 +7,48 @@ namespace FitnessFusion.Models
     {
         #region Attributes
 
-        private string address;
         private List<HealthIssue> healthIssues;
-        private Results results;
-        private ActivityProgram activityProgram;
-        private CreditCard creditCard;
+        private List<CreditCard> creditCards;
+        private List<BasicParameters> results;
+        private BasicParameters personalBest;
+        private double activityCoefficient;
+        private Schedule schedule;
+        private GymProgram activityProgram;
 
         #endregion
 
         #region Properties
 
-        public string Address { get =>  address; set => address = value; }
         public List<HealthIssue> HealthIssues { get => healthIssues; set => healthIssues = value; }
-        public Results Results { get => results; set => results = value; } 
-        public ActivityProgram ActivityProgram { get => activityProgram; set => activityProgram = value; }
-        public CreditCard CreditCard { get => creditCard; set => creditCard = value; }
+        public List<CreditCard> CreditCards { get => creditCards; set => creditCards = value; }
+        public List<BasicParameters> Results { get => results; set => results = value; }
+        public BasicParameters PersonalBest { get => personalBest; set => personalBest = value; }
+        public double ActivityCoefficient { get => activityCoefficient; set => activityCoefficient = value; }
+        public Schedule Schedule { get => schedule; set => schedule = value; }
+        public GymProgram ActivityProgram { get => activityProgram; set => activityProgram = value; }
 
         #endregion
 
         #region Constructor
-        public User(int id, string firstName, string lastName, char sex, DateTime dateOfBirth, 
-            string username, string password, string email)
+
+        public User(int id, string firstName, string lastName, char sex, DateTime dateOfBirth, string address, 
+                    string username, string password, string email, List<HealthIssue> healthIssues, List<CreditCard> creditCards, 
+                    List<BasicParameters> results, BasicParameters personalBest, double activityCoefficient, Schedule schedule, 
+                    GymProgram activityProgram) 
+           : base(id, firstName, lastName, sex, dateOfBirth, address, username, password, email)
         {
-            Id = id;
-            FirstName = firstName;
-            LastName = lastName;
-            Sex = sex;
-            DateOfBirth = dateOfBirth; 
-            Username = username;
-            Password = password;
-            Email = email;
+            HealthIssues = healthIssues;
+            CreditCards = creditCards;
+            Results = results; 
+            PersonalBest = personalBest;
+            ActivityCoefficient = activityCoefficient;
+            Schedule = schedule;
+            ActivityProgram = activityProgram;
+        }
+
+        public User() : base() 
+        {
+        
         }
 
         #endregion
@@ -44,7 +56,7 @@ namespace FitnessFusion.Models
         #region Methods
 
         // TODO
-        
+
         #endregion
 
     }

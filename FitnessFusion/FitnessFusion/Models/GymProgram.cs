@@ -2,17 +2,17 @@
 
 namespace FitnessFusion.Models
 {
-    public class ActivityProgram
+    public class GymProgram
     {
         #region Attributes
 
         private int id;
         private string name;
-        private string description;
         private string overview;
+        private string description;
         private List<Training> trainings;
-        private string category;
-        private Rating rating;
+        private List<Category> categories;
+        private List<Rating> ratings;
 
         #endregion
 
@@ -21,20 +21,29 @@ namespace FitnessFusion.Models
         public string Name { get => name; set => name = value; }
         public string Description { get => description; set => description = value; }
         public string Overview { get => overview; set => overview = value; }
-        public string Category { get => category; set => category = value; }
+        public List<Category> Categories { get => categories; set => categories = value; }
         public List<Training> Trainings { get => trainings; set => trainings = value; }
-        public Rating Rating { get => rating; set => rating = value; }
+        public List<Rating> Ratings { get => ratings; set => ratings = value; }
 
         #endregion
 
-        #region Constuctor
-        public ActivityProgram(int id, string name, string description, 
-            string overview, Rating rating)
+        #region Constructor
+        public GymProgram(int id, string name, string description, string overview,
+                               List<Training> trainings, List<Category> categories,
+                               List<Rating> ratings)
         {
             Id = id;
             Name = name;
-            Description = description;
             Overview = overview;
+            Description = description;
+            Trainings = trainings;
+            Categories = categories;
+            Ratings = ratings;
+        }
+
+        public GymProgram()
+        {
+
         }
 
         #endregion

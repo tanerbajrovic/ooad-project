@@ -18,10 +18,15 @@
 
         #region Constructor
 
-        public Rating(double ratingValue, string review)
+        public Rating(double rating, string review)
         {
-            RatingValue = ratingValue;
+            RatingValue = rating;
             Review = review;
+        }
+
+        public Rating ()
+        {
+
         }
 
         #endregion

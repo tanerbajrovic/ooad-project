@@ -13,7 +13,6 @@ namespace FitnessFusion.Models
         #endregion
 
         #region Properties
-
         public Experience Experience { get => experience; set => experience = value; }
         public List<User> Trainees { get => trainees; set => trainees = value; }
 
@@ -22,17 +21,21 @@ namespace FitnessFusion.Models
         #region Constructor
 
         public Trainer(int id, string firstName, string lastName, char sex, DateTime dateOfBirth,
-            string username, string password, string email)
+                       string address, string username, string password, string email, 
+                       Experience experience, List<User> trainees) 
+            : base(id, firstName, lastName, sex, dateOfBirth, address, username, password, email)
         {
-            Id = id;
-            FirstName = firstName;
-            LastName = lastName;
-            Sex = sex;
-            DateOfBirth = dateOfBirth;
-            Username = username;
-            Password = password;
-            Email = email;
+            Experience = experience;
+            Trainees = trainees;
         }
+
+        public Trainer() : base() { }
+
+        #endregion
+
+        #region Methods
+
+        // TODO
 
         #endregion
     }

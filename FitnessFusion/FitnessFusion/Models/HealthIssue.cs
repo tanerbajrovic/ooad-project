@@ -2,6 +2,10 @@
 {
     public enum HealthIssue
     {
-        
+        Heart,
+        Injury,
+        MentalHealth,
+        Metabolic,
+        BirthDefect
     }
 }

@@ -1,12 +1,11 @@
 ﻿namespace FitnessFusion.Models
 {
-    public class Activity
+    public class GymActivity
     {
         #region Attributes
-        
+
         private string id;
         private string name;
-        private string type;
         private int difficultyLevel;
 
         #endregion Attributes
@@ -21,11 +20,16 @@
 
         #region Constructor
 
-        public Activity(string id, string name, int difficultyLevel)
+        public GymActivity(string id, string name, int difficultyLevel)
         {
             Id = id;
             Name = name;
             DifficultyLevel = difficultyLevel;
+        }
+
+        public GymActivity()
+        {
+
         }
 
         #endregion
