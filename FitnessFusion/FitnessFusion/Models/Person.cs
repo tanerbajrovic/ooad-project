@@ -1,43 +1,32 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace FitnessFusion.Models
 {
     public abstract class Person
     {
-        #region Attributes
-
-        int id;
-        private string firstName;
-        private string lastName;
-        private char sex;
-        private DateTime dateOfBirth;
-        private string address;
-        private string username;
-        private string password;
-        private string email;
-
-        #endregion
-
         #region Properties
 
-        public int Id { get => id; set => id = value; }
-        public string FirstName { get => firstName; set => firstName = value; }
-        public string LastName { get => lastName; set => lastName = value; }
-        public string Address { get => address; set => address = value; }
-        public char Sex { get => sex; set => sex = value; }
-        public DateTime DateOfBirth { get => dateOfBirth; set => dateOfBirth = value; }
-        public string Username { get => username; set => username = value; }
-        public string Password { get => password; set => password = value; }
-        public string Email { get => email; set => email = value; }
+        [Key]
+        public int ID { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Address { get; set; }
+        public char Sex { get; set; }
+        public DateTime DateOfBirth { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
+        public string Email { get; set; }
 
         #endregion
 
         #region Constructor
 
         public Person(int id, string firstName, string lastName, char sex,
-           DateTime dateOfBirth, string address, string username, string password, string email)
+           DateTime dateOfBirth, string address, string username, string password, 
+           string email)
         {
-            Id = id;
+            ID = id;
             FirstName = firstName;
             LastName = lastName;
             Sex = sex;
@@ -48,14 +37,12 @@ namespace FitnessFusion.Models
             Email = email;
         }
 
-        public Person()
-        {
-
-        }
+        public Person() { }
 
         #endregion
 
         #region Methods
+        
         // TODO
 
         #endregion

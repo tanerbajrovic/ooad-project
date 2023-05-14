@@ -1,42 +1,32 @@
 ﻿using Microsoft.VisualBasic;
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace FitnessFusion.Models
 {
     public abstract class GymSession
     {
-
-        #region Attributes
-
-        private int id;
-        private DateTime dateTime;
-        private bool isComplete;
-        private int calories;
-
-        #endregion
-
         #region Properties
-
-        public int Id { get => id; set => id = value; }
-        public DateTime DateTime { get => dateTime; set => dateTime = value; }  
-        public bool IsComplete { get => isComplete; set => isComplete = value; }
-        public int Calories { get => calories; set => calories = value; }
+        
+        [Key]
+        public int ID { get; set; }
+        public DateTime DateTime { get; set; }   
+        public bool IsComplete { get; set; }
+        public int BurnedCalories { get; set; }
 
         #endregion
 
         #region Constructor
-        public GymSession(int id, DateTime dateTime, bool isComplete = false, int calories = 0)
+
+        protected GymSession(int id, DateTime dateTime, bool isComplete, int burnedCalories)
         {
-            Id = id;
+            ID = id;
             DateTime = dateTime;
             IsComplete = isComplete;
-            Calories = calories;
+            BurnedCalories = burnedCalories;
         }
 
-        public GymSession()
-        {
-
-        }
+        protected GymSession() { }
 
         #endregion
 
@@ -45,6 +35,5 @@ namespace FitnessFusion.Models
         // TODO
 
         #endregion
-
     }
 }

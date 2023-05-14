@@ -2,32 +2,21 @@
 
 namespace FitnessFusion.Models
 {
-    public class StrengthParameters : BasicParameters
+    public class StrengthParameters : Parameters
     {
-        #region Attributes
-
-        private double benchPress;
-        private double squat;
-        private int absTest;
-        private int pushUps;
-
-        #endregion
-
         #region Properties
 
-        public double BenchPress { get => benchPress; set => benchPress = value; }
-        public double Squat { get => squat; set => squat = value; }
-        public int AbsTest { get => absTest; set => absTest = value; }
-        public int PushUps { get => pushUps; set => pushUps = value; }
+        public double BenchPress { get; set; }
+        public double Squat { get; set; }
+        public int AbsTest { get; set; }
+        public int PushUps { get; set; }
 
         #endregion
 
         #region Constructor
 
-        public StrengthParameters(int id, int calories, double mass, double height,
-                                  Tuple<double, double> waist, double benchPress, 
-                                  double squat, int absTest, int pushUps)
-            : base(id, calories, mass, height, waist)
+        public StrengthParameters(int id, double benchPress, double squat, int absTest,
+           int pushUps) : base(id)
         {
             BenchPress = benchPress;
             Squat = squat;
@@ -35,14 +24,13 @@ namespace FitnessFusion.Models
             PushUps = pushUps;
         }
 
-        public StrengthParameters() : base() 
-        {
-        
-        }
+        public StrengthParameters() : base() { }
 
         #endregion
 
         #region Methods
+
+        // TODO
 
         #endregion
     }

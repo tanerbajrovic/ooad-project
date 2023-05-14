@@ -2,32 +2,21 @@
 
 namespace FitnessFusion.Models
 {
-    public class CardioParameters : BasicParameters
+    public class CardioParameters : Parameters
     {
-        #region Attributes
-
-        private double sprintRunning;
-        private double running;
-        private double verticalJump;
-        private double horizontalJump;
-
-        #endregion
-
         #region Properties
 
-        public double SprintRunning { get =>  sprintRunning; set => sprintRunning = value; }
-        public double Running { get => running; set => running = value; }
-        public double VerticalJump { get => verticalJump; set => verticalJump = value; }
-        public double HorizontalJump { get => horizontalJump; set => horizontalJump = value; }
+        public double SprintRunning { get; set; }
+        public double Running { get; set; }
+        public double VerticalJump { get; set; }
+        public double HorizontalJump { get; set; }
 
         #endregion
 
         #region Constructor
 
-        public CardioParameters(int id, int calories, double mass, double height, 
-                                Tuple<double, double> waist, double sprintRunning,
-                                double running, double verticalJump, double horizontalJump)
-            : base(id, calories, mass, height, waist)
+        public CardioParameters(int id, double sprintRunning, double running,
+           double verticalJump, double horizontalJump) : base(id)
         {
             SprintRunning = sprintRunning;
             Running = running;
@@ -35,10 +24,8 @@ namespace FitnessFusion.Models
             HorizontalJump = horizontalJump;
         }
 
-        public CardioParameters()
-        {
 
-        }
+        public CardioParameters() : base() { }
 
         #endregion
 
@@ -47,6 +34,5 @@ namespace FitnessFusion.Models
         // TODO
 
         #endregion
-
     }
 }

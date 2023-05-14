@@ -2,19 +2,11 @@
 {
     public class CreditCard
     {
-        #region Attributes
-
-        private string cardNumber;
-        private int cvc;
-        private string expirationDate;
-
-        #endregion
-
         #region Properties
 
-        public string CardNumber { get =>  cardNumber; set => cardNumber = value;}
-        public int Cvc { get => cvc; set => cvc = value; }
-        public string ExpirationDate { get => expirationDate; set => expirationDate = value; }
+        public string CardNumber { get; set;}
+        public int CVC { get; set; }
+        public string ExpirationDate { get; set; }
 
         #endregion
 
@@ -23,9 +15,11 @@
         public CreditCard(string cardNumber, int cvc, string expirationDate)
         {
             CardNumber = cardNumber;
-            Cvc = cvc;
+            CVC = cvc;
             ExpirationDate = expirationDate;
         }
+
+        public CreditCard() { }
 
         #endregion
 

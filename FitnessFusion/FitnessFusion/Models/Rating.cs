@@ -1,33 +1,28 @@
-﻿namespace FitnessFusion.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace FitnessFusion.Models
 {
     public class Rating
     {
-        #region Attributes
-
-        private double ratingValue;
-        private string review;
-
-        #endregion
-
         #region Properties
 
-        public double RatingValue { get => ratingValue; set => ratingValue = value; }
-        public string Review { get => review; set => review = value; }
+        [Key]
+        public int ID { get; set; }
+        public double RatingValue { get; set; }
+        public string Review { get; set; }
 
         #endregion
 
         #region Constructor
 
-        public Rating(double rating, string review)
+        public Rating(int id, double rating, string review)
         {
+            ID = id;
             RatingValue = rating;
             Review = review;
         }
 
-        public Rating ()
-        {
-
-        }
+        public Rating () { }
 
         #endregion
 
