@@ -1,9 +1,13 @@
-﻿namespace FitnessFusion.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace FitnessFusion.Models
 {
     public class CreditCard
     {
         #region Properties
 
+        [Key]
+        public int ID { get; set; }
         public string CardNumber { get; set;}
         public int CVC { get; set; }
         public string ExpirationDate { get; set; }
@@ -12,8 +16,9 @@
 
         #region Constructors
 
-        public CreditCard(string cardNumber, int cvc, string expirationDate)
+        public CreditCard(int id, string cardNumber, int cvc, string expirationDate)
         {
+            ID = id;
             CardNumber = cardNumber;
             CVC = cvc;
             ExpirationDate = expirationDate;
