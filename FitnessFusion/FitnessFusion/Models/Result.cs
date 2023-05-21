@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Numerics;
 
 namespace FitnessFusion.Models
@@ -11,28 +12,20 @@ namespace FitnessFusion.Models
 
         [Key]
         public int ID { get; set; }
+        [ForeignKey("User")]
+        public int IDUser { get; set; }
+        [ForeignKey("Trainer")]
+        public int IDTrainer { get; set; }
         public int Calories { get; set; }
         public DateTime Date { get; set; }
         public double Mass { get; set; }
         public double Height { get; set; }  
-        public List<double> Circumferences { get; set; }
-        public List<Parameters> AdditionalResults { get; set; }
+        // public List<double> Circumferences { get; set; }
+        public double WaistCircumference { get; set; }
 
         #endregion
 
         #region Constructor
-
-        public Result(int id, int calories, DateTime date, double mass, double height,
-            List<double> circumferences, List<Parameters> additionalResults)
-        {
-            ID = id;
-            Calories = calories;
-            Date = date;
-            Mass = mass;
-            Height = height;
-            Circumferences = circumferences;
-            AdditionalResults = additionalResults;
-        }
 
         public Result() { }
 

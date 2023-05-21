@@ -14,19 +14,10 @@ namespace FitnessFusion.Models
         public int ID { get; set; } 
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public List<GymSession> GymSessions { get; set; }
 
         #endregion
 
         #region Constructors
-
-        public Schedule(int id, DateTime startDate,  DateTime endDate, List<GymSession> gymSessions)
-        {
-            ID = id;
-            StartDate = startDate;
-            EndDate = endDate;
-            GymSessions = gymSessions;
-        }
 
         public Schedule() { }
 

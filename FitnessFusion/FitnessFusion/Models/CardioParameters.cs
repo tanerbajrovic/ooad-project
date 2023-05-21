@@ -15,16 +15,6 @@ namespace FitnessFusion.Models
 
         #region Constructor
 
-        public CardioParameters(int id, double sprintRunning, double running,
-           double verticalJump, double horizontalJump) : base(id)
-        {
-            SprintRunning = sprintRunning;
-            Running = running;
-            VerticalJump = verticalJump;
-            HorizontalJump = horizontalJump;
-        }
-
-
         public CardioParameters() : base() { }
 
         #endregion

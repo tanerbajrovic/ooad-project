@@ -19,19 +19,6 @@ namespace FitnessFusion.Models
 
         #region Constructor
 
-        public HybridParameters(int id, double benchPress, double squat, int absTest,
-            int pushUps, double sprintRunning, double running, double verticalJump, 
-            double horizontalJump) : base(id) 
-        { 
-            BenchPress = benchPress;
-            Squat = squat;
-            AbsTest = absTest;
-            PushUps = pushUps;
-            Running = running;
-            VerticalJump = verticalJump;
-            HorizontalJump = horizontalJump;
-        }
-
         public HybridParameters() : base() { }
 
         #endregion

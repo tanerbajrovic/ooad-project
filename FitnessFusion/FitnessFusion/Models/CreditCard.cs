@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FitnessFusion.Models
 {
@@ -8,6 +9,8 @@ namespace FitnessFusion.Models
 
         [Key]
         public int ID { get; set; }
+        [ForeignKey("User")]
+        public int IDUser { get; set; }
         public string CardNumber { get; set;}
         public int CVC { get; set; }
         public string ExpirationDate { get; set; }

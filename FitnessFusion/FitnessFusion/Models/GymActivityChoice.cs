@@ -9,23 +9,18 @@ namespace FitnessFusion.Models
 
         [Key]
         public int ID {  get; set; }
-        [ForeignKey("GymSession")]
-        public int GymSessionID { get; set; }
+        [ForeignKey("Training")]
+        public int IDTraining { get; set; }
+        [ForeignKey("ExtraGymSession")]
+        public int IDExtraGymSession { get; set; }
         [ForeignKey("GymActivity")]
-        public int GymActivityID { get; set; }
+        public int IDGymActivity { get; set; }
 
         // Also include GymSession and GymActivity objects?
 
         #endregion
 
         #region Constructor
-
-        public GymActivityChoice(int id, int gymSessionId, int gymActivityId)
-        {
-            ID = id;
-            GymSessionID = gymSessionId;
-            GymActivityID = gymActivityId;
-        }
 
         public GymActivityChoice() { }
 

@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FitnessFusion.Models
 {
@@ -7,20 +8,13 @@ namespace FitnessFusion.Models
         #region Properties
 
         [Key]
-        public string ID { get; set; }
+        public int ID { get; set; }
         public string Name { get; set; }
         public int DifficultyLevel { get; set; }
 
         #endregion
 
         #region Constructor
-
-        public GymActivity(string id, string name, int difficultyLevel)
-        {
-            ID = id;
-            Name = name;
-            DifficultyLevel = difficultyLevel;
-        }
 
         public GymActivity() { }
         

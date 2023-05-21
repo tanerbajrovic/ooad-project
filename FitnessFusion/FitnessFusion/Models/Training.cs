@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FitnessFusion.Models
 {
@@ -7,19 +8,13 @@ namespace FitnessFusion.Models
     {
         #region Properties
 
-        public List<GymActivity> Activities { get; set; }
         public int EstimatedDuration { get; set; }
+        [ForeignKey("GymProgram")]
+        public int IDGymProgram { get; set; }
 
         #endregion
 
         #region Constructor
-
-        public Training(int id, DateTime dateTime, bool isComplete, int burnedCalories,
-            List<GymActivity> activities, int estimatedTime) : base(id, dateTime, isComplete, burnedCalories)
-        {
-            Activities = activities;
-            EstimatedDuration = estimatedTime;
-        }
 
         public Training() : base() { }
 
