@@ -38,18 +38,6 @@ namespace FitnessFusion.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Parameters",
-                columns: table => new
-                {
-                    ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1")
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Parameters", x => x.ID);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Trainers",
                 columns: table => new
                 {
@@ -68,73 +56,6 @@ namespace FitnessFusion.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Trainers", x => x.ID);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "CardioParameters",
-                columns: table => new
-                {
-                    ID = table.Column<int>(type: "int", nullable: false),
-                    SprintRunning = table.Column<double>(type: "float", nullable: false),
-                    Running = table.Column<double>(type: "float", nullable: false),
-                    VerticalJump = table.Column<double>(type: "float", nullable: false),
-                    HorizontalJump = table.Column<double>(type: "float", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_CardioParameters", x => x.ID);
-                    table.ForeignKey(
-                        name: "FK_CardioParameters_Parameters_ID",
-                        column: x => x.ID,
-                        principalTable: "Parameters",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "HybridParameters",
-                columns: table => new
-                {
-                    ID = table.Column<int>(type: "int", nullable: false),
-                    BenchPress = table.Column<double>(type: "float", nullable: false),
-                    Squat = table.Column<double>(type: "float", nullable: false),
-                    AbsTest = table.Column<int>(type: "int", nullable: false),
-                    PushUps = table.Column<int>(type: "int", nullable: false),
-                    SprintRunning = table.Column<double>(type: "float", nullable: false),
-                    Running = table.Column<double>(type: "float", nullable: false),
-                    VerticalJump = table.Column<double>(type: "float", nullable: false),
-                    HorizontalJump = table.Column<double>(type: "float", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_HybridParameters", x => x.ID);
-                    table.ForeignKey(
-                        name: "FK_HybridParameters_Parameters_ID",
-                        column: x => x.ID,
-                        principalTable: "Parameters",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "StrengthParameters",
-                columns: table => new
-                {
-                    ID = table.Column<int>(type: "int", nullable: false),
-                    BenchPress = table.Column<double>(type: "float", nullable: false),
-                    Squat = table.Column<double>(type: "float", nullable: false),
-                    AbsTest = table.Column<int>(type: "int", nullable: false),
-                    PushUps = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_StrengthParameters", x => x.ID);
-                    table.ForeignKey(
-                        name: "FK_StrengthParameters_Parameters_ID",
-                        column: x => x.ID,
-                        principalTable: "Parameters",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -342,7 +263,15 @@ namespace FitnessFusion.Data.Migrations
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Mass = table.Column<double>(type: "float", nullable: false),
                     Height = table.Column<double>(type: "float", nullable: false),
-                    WaistCircumference = table.Column<double>(type: "float", nullable: false)
+                    WaistCircumference = table.Column<double>(type: "float", nullable: false),
+                    BenchPress = table.Column<double>(type: "float", nullable: false),
+                    Squat = table.Column<double>(type: "float", nullable: false),
+                    AbsTest = table.Column<int>(type: "int", nullable: false),
+                    PushUps = table.Column<int>(type: "int", nullable: false),
+                    SprintRunning = table.Column<double>(type: "float", nullable: false),
+                    Running = table.Column<double>(type: "float", nullable: false),
+                    VerticalJump = table.Column<double>(type: "float", nullable: false),
+                    HorizontalJump = table.Column<double>(type: "float", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -359,32 +288,6 @@ namespace FitnessFusion.Data.Migrations
                         principalTable: "Users",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ParametersChoices",
-                columns: table => new
-                {
-                    ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    IDResult = table.Column<int>(type: "int", nullable: false),
-                    IDParameters = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ParametersChoices", x => x.ID);
-                    table.ForeignKey(
-                        name: "FK_ParametersChoices_Parameters_IDParameters",
-                        column: x => x.IDParameters,
-                        principalTable: "Parameters",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_ParametersChoices_Results_IDResult",
-                        column: x => x.IDResult,
-                        principalTable: "Results",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -411,16 +314,6 @@ namespace FitnessFusion.Data.Migrations
                 name: "IX_GymActivityChoices_IDTraining",
                 table: "GymActivityChoices",
                 column: "IDTraining");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ParametersChoices_IDParameters",
-                table: "ParametersChoices",
-                column: "IDParameters");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ParametersChoices_IDResult",
-                table: "ParametersChoices",
-                column: "IDResult");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Rating_IDGymProgram",
@@ -471,25 +364,16 @@ namespace FitnessFusion.Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "CardioParameters");
-
-            migrationBuilder.DropTable(
                 name: "CreditCards");
 
             migrationBuilder.DropTable(
                 name: "GymActivityChoices");
 
             migrationBuilder.DropTable(
-                name: "HybridParameters");
-
-            migrationBuilder.DropTable(
-                name: "ParametersChoices");
-
-            migrationBuilder.DropTable(
                 name: "Rating");
 
             migrationBuilder.DropTable(
-                name: "StrengthParameters");
+                name: "Results");
 
             migrationBuilder.DropTable(
                 name: "ExtraGymSessions");
@@ -499,12 +383,6 @@ namespace FitnessFusion.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Trainings");
-
-            migrationBuilder.DropTable(
-                name: "Results");
-
-            migrationBuilder.DropTable(
-                name: "Parameters");
 
             migrationBuilder.DropTable(
                 name: "Users");

@@ -18,10 +18,6 @@ namespace FitnessFusion.Data
         public DbSet<User> User { get; set; }
         public DbSet<Trainer> Trainer { get; set; }
         // public DbSet<Parameters> Parameters { get; set; }
-        public DbSet<CardioParameters> CardioParameters { get; set; }
-        public DbSet<StrengthParameters> StrengthParameters { get; set; }
-        public DbSet<HybridParameters> HybridParameters { get; set; }
-        public DbSet<ParametersChoice> ParametersChoice { get; set; }
         public DbSet<CreditCard> CreditCard { get; set; }
         public DbSet<Schedule> Schedule { get; set; }
         public DbSet<Rating> Rating { get; set; }
@@ -38,10 +34,6 @@ namespace FitnessFusion.Data
         {
             modelBuilder.Entity<User>().ToTable("Users");
             modelBuilder.Entity<Trainer>().ToTable("Trainers");
-            modelBuilder.Entity<CardioParameters>().ToTable("CardioParameters");
-            modelBuilder.Entity<StrengthParameters>().ToTable("StrengthParameters");
-            modelBuilder.Entity<HybridParameters>().ToTable("HybridParameters");
-            modelBuilder.Entity<ParametersChoice>().ToTable("ParametersChoices");
             modelBuilder.Entity<CreditCard>().ToTable("CreditCards");
             modelBuilder.Entity<Schedule>().ToTable("Schedules");
             modelBuilder.Entity<Result>().ToTable("Results");
