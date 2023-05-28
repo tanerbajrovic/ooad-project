@@ -13,7 +13,7 @@ namespace FitnessFusion.Models
         [Key]
         public int ID { get; set; }
         [ForeignKey("User")]
-        public int IDUser { get; set; }
+        public int? IDUser { get; set; }
         public User User { get; set; }
         [ForeignKey("Trainer")]
         public int IDTrainer { get; set; }
@@ -22,7 +22,6 @@ namespace FitnessFusion.Models
         public DateTime Date { get; set; }
         public double Mass { get; set; }
         public double Height { get; set; }  
-        // public List<double> Circumferences { get; set; }
         public double WaistCircumference { get; set; }
 
         #endregion
