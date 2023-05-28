@@ -29,7 +29,7 @@ namespace FitnessFusion.Data
         public DbSet<GymProgram> GymProgram { get; set; }
         // public DbSet<GymSession> GymSession { get; set; }
         public DbSet<Training> Training { get; set; }
-        public DbSet<ExtraGymSession> ExtraGymSessions { get; set; }
+        public DbSet<ExtraGymSession> ExtraGymSession { get; set; }
         public DbSet<GymActivity> GymActivity { get; set; }
         public DbSet<GymActivityChoice> GymActivityChoice { get; set; }
 

@@ -254,7 +254,7 @@ namespace FitnessFusion.Data.Migrations
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     IDTraining = table.Column<int>(type: "int", nullable: true),
-                    IDExtraGymSession = table.Column<int>(type: "int", nullable: false),
+                    IDExtraGymSession = table.Column<int>(type: "int", nullable: true),
                     IDGymActivity = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -265,7 +265,7 @@ namespace FitnessFusion.Data.Migrations
                         column: x => x.IDExtraGymSession,
                         principalTable: "ExtraGymSessions",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_GymActivityChoices_GymActivities_IDGymActivity",
                         column: x => x.IDGymActivity,

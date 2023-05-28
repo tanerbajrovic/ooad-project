@@ -102,7 +102,7 @@ namespace FitnessFusion.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("IDExtraGymSession")
+                    b.Property<int?>("IDExtraGymSession")
                         .HasColumnType("int");
 
                     b.Property<int>("IDGymActivity")
@@ -687,9 +687,7 @@ namespace FitnessFusion.Data.Migrations
                 {
                     b.HasOne("FitnessFusion.Models.ExtraGymSession", "ExtraGymSession")
                         .WithMany()
-                        .HasForeignKey("IDExtraGymSession")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("IDExtraGymSession");
 
                     b.HasOne("FitnessFusion.Models.GymActivity", "GymActivity")
                         .WithMany()
