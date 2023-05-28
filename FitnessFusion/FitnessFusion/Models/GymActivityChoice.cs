@@ -13,7 +13,7 @@ namespace FitnessFusion.Models
         public int? IDTraining { get; set; }
         public Training Training { get; set; }
         [ForeignKey("ExtraGymSession")]
-        public int IDExtraGymSession { get; set; }
+        public int? IDExtraGymSession { get; set; }
         public ExtraGymSession ExtraGymSession { get; set; }
         [ForeignKey("GymActivity")]
         public int IDGymActivity { get; set; }
