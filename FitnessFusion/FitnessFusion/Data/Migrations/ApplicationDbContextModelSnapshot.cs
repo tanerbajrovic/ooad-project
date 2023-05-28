@@ -146,40 +146,6 @@ namespace FitnessFusion.Data.Migrations
                     b.ToTable("GymPrograms");
                 });
 
-            modelBuilder.Entity("FitnessFusion.Models.Parameters", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.HasKey("ID");
-
-                    b.ToTable("Parameters");
-                });
-
-            modelBuilder.Entity("FitnessFusion.Models.ParametersChoice", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("IDParameters")
-                        .HasColumnType("int");
-
-                    b.Property<int>("IDResult")
-                        .HasColumnType("int");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("IDParameters");
-
-                    b.HasIndex("IDResult");
-
-                    b.ToTable("ParametersChoices");
-                });
-
             modelBuilder.Entity("FitnessFusion.Models.Rating", b =>
                 {
                     b.Property<int>("ID")
@@ -215,6 +181,12 @@ namespace FitnessFusion.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("AbsTest")
+                        .HasColumnType("int");
+
+                    b.Property<double>("BenchPress")
+                        .HasColumnType("float");
+
                     b.Property<int>("Calories")
                         .HasColumnType("int");
 
@@ -224,6 +196,9 @@ namespace FitnessFusion.Data.Migrations
                     b.Property<double>("Height")
                         .HasColumnType("float");
 
+                    b.Property<double>("HorizontalJump")
+                        .HasColumnType("float");
+
                     b.Property<int>("IDTrainer")
                         .HasColumnType("int");
 
@@ -231,6 +206,21 @@ namespace FitnessFusion.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<double>("Mass")
+                        .HasColumnType("float");
+
+                    b.Property<int>("PushUps")
+                        .HasColumnType("int");
+
+                    b.Property<double>("Running")
+                        .HasColumnType("float");
+
+                    b.Property<double>("SprintRunning")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Squat")
+                        .HasColumnType("float");
+
+                    b.Property<double>("VerticalJump")
                         .HasColumnType("float");
 
                     b.Property<double>("WaistCircumference")
@@ -592,75 +582,6 @@ namespace FitnessFusion.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("FitnessFusion.Models.CardioParameters", b =>
-                {
-                    b.HasBaseType("FitnessFusion.Models.Parameters");
-
-                    b.Property<double>("HorizontalJump")
-                        .HasColumnType("float");
-
-                    b.Property<double>("Running")
-                        .HasColumnType("float");
-
-                    b.Property<double>("SprintRunning")
-                        .HasColumnType("float");
-
-                    b.Property<double>("VerticalJump")
-                        .HasColumnType("float");
-
-                    b.ToTable("CardioParameters");
-                });
-
-            modelBuilder.Entity("FitnessFusion.Models.HybridParameters", b =>
-                {
-                    b.HasBaseType("FitnessFusion.Models.Parameters");
-
-                    b.Property<int>("AbsTest")
-                        .HasColumnType("int");
-
-                    b.Property<double>("BenchPress")
-                        .HasColumnType("float");
-
-                    b.Property<double>("HorizontalJump")
-                        .HasColumnType("float");
-
-                    b.Property<int>("PushUps")
-                        .HasColumnType("int");
-
-                    b.Property<double>("Running")
-                        .HasColumnType("float");
-
-                    b.Property<double>("SprintRunning")
-                        .HasColumnType("float");
-
-                    b.Property<double>("Squat")
-                        .HasColumnType("float");
-
-                    b.Property<double>("VerticalJump")
-                        .HasColumnType("float");
-
-                    b.ToTable("HybridParameters");
-                });
-
-            modelBuilder.Entity("FitnessFusion.Models.StrengthParameters", b =>
-                {
-                    b.HasBaseType("FitnessFusion.Models.Parameters");
-
-                    b.Property<int>("AbsTest")
-                        .HasColumnType("int");
-
-                    b.Property<double>("BenchPress")
-                        .HasColumnType("float");
-
-                    b.Property<int>("PushUps")
-                        .HasColumnType("int");
-
-                    b.Property<double>("Squat")
-                        .HasColumnType("float");
-
-                    b.ToTable("StrengthParameters");
-                });
-
             modelBuilder.Entity("FitnessFusion.Models.CreditCard", b =>
                 {
                     b.HasOne("FitnessFusion.Models.User", "User")
@@ -704,25 +625,6 @@ namespace FitnessFusion.Data.Migrations
                     b.Navigation("GymActivity");
 
                     b.Navigation("Training");
-                });
-
-            modelBuilder.Entity("FitnessFusion.Models.ParametersChoice", b =>
-                {
-                    b.HasOne("FitnessFusion.Models.Parameters", "Parameters")
-                        .WithMany()
-                        .HasForeignKey("IDParameters")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("FitnessFusion.Models.Result", "Result")
-                        .WithMany()
-                        .HasForeignKey("IDResult")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Parameters");
-
-                    b.Navigation("Result");
                 });
 
             modelBuilder.Entity("FitnessFusion.Models.Rating", b =>
@@ -856,33 +758,6 @@ namespace FitnessFusion.Data.Migrations
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("FitnessFusion.Models.CardioParameters", b =>
-                {
-                    b.HasOne("FitnessFusion.Models.Parameters", null)
-                        .WithOne()
-                        .HasForeignKey("FitnessFusion.Models.CardioParameters", "ID")
-                        .OnDelete(DeleteBehavior.ClientCascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("FitnessFusion.Models.HybridParameters", b =>
-                {
-                    b.HasOne("FitnessFusion.Models.Parameters", null)
-                        .WithOne()
-                        .HasForeignKey("FitnessFusion.Models.HybridParameters", "ID")
-                        .OnDelete(DeleteBehavior.ClientCascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("FitnessFusion.Models.StrengthParameters", b =>
-                {
-                    b.HasOne("FitnessFusion.Models.Parameters", null)
-                        .WithOne()
-                        .HasForeignKey("FitnessFusion.Models.StrengthParameters", "ID")
-                        .OnDelete(DeleteBehavior.ClientCascade)
                         .IsRequired();
                 });
 #pragma warning restore 612, 618
