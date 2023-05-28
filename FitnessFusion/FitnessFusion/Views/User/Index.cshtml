@@ -16,6 +16,12 @@
                 @Html.DisplayNameFor(model => model.ActivityCoefficient)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.Schedule)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GymProgram)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.FirstName)
             </th>
             <th>
@@ -47,6 +53,12 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.ActivityCoefficient)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Schedule.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GymProgram.ID)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.FirstName)

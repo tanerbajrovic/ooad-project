@@ -22,7 +22,8 @@ namespace FitnessFusion.Controllers
         // GET: CreditCard
         public async Task<IActionResult> Index()
         {
-            return View(await _context.CreditCard.ToListAsync());
+            var applicationDbContext = _context.CreditCard.Include(c => c.User);
+            return View(await applicationDbContext.ToListAsync());
         }
 
         // GET: CreditCard/Details/5
@@ -34,6 +35,7 @@ namespace FitnessFusion.Controllers
             }
 
             var creditCard = await _context.CreditCard
+                .Include(c => c.User)
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (creditCard == null)
             {
@@ -46,6 +48,7 @@ namespace FitnessFusion.Controllers
         // GET: CreditCard/Create
         public IActionResult Create()
         {
+            ViewData["IDUser"] = new SelectList(_context.User, "ID", "ID");
             return View();
         }
 
@@ -62,6 +65,7 @@ namespace FitnessFusion.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["IDUser"] = new SelectList(_context.User, "ID", "ID", creditCard.IDUser);
             return View(creditCard);
         }
 
@@ -78,6 +82,7 @@ namespace FitnessFusion.Controllers
             {
                 return NotFound();
             }
+            ViewData["IDUser"] = new SelectList(_context.User, "ID", "ID", creditCard.IDUser);
             return View(creditCard);
         }
 
@@ -113,6 +118,7 @@ namespace FitnessFusion.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["IDUser"] = new SelectList(_context.User, "ID", "ID", creditCard.IDUser);
             return View(creditCard);
         }
 
@@ -125,6 +131,7 @@ namespace FitnessFusion.Controllers
             }
 
             var creditCard = await _context.CreditCard
+                .Include(c => c.User)
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (creditCard == null)
             {
