@@ -11,6 +11,7 @@ namespace FitnessFusion.Models
         public int EstimatedDuration { get; set; }
         [ForeignKey("GymProgram")]
         public int IDGymProgram { get; set; }
+        public GymProgram GymProgram { get; set; }
 
         #endregion
 

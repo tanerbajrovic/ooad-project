@@ -11,12 +11,13 @@ namespace FitnessFusion.Models
         public int ID {  get; set; }
         [ForeignKey("Training")]
         public int IDTraining { get; set; }
+        public Training Training { get; set; }
         [ForeignKey("ExtraGymSession")]
         public int IDExtraGymSession { get; set; }
+        public ExtraGymSession ExtraGymSession { get; set; }
         [ForeignKey("GymActivity")]
         public int IDGymActivity { get; set; }
-
-        // Also include GymSession and GymActivity objects?
+        public GymActivity GymActivity { get; set; }
 
         #endregion
 
