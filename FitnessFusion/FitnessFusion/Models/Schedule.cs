@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics.Eventing.Reader;
 
 namespace FitnessFusion.Models
@@ -11,7 +12,10 @@ namespace FitnessFusion.Models
         #region Properties
 
         [Key]
-        public int ID { get; set; } 
+        public int ID { get; set; }
+        [ForeignKey("Trainer")]
+        public int IDTrainer { get; set; }
+        public Trainer Trainer { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
 

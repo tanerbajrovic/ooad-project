@@ -14,10 +14,10 @@ namespace FitnessFusion.Data
         {
         }
 
-        public DbSet<Person> Person { get; set; }
+        // public DbSet<Person> Person { get; set; }
         public DbSet<User> User { get; set; }
         public DbSet<Trainer> Trainer { get; set; }
-        public DbSet<Parameters> Parameters { get; set; }
+        // public DbSet<Parameters> Parameters { get; set; }
         public DbSet<CardioParameters> CardioParameters { get; set; }
         public DbSet<StrengthParameters> StrengthParameters { get; set; }
         public DbSet<HybridParameters> HybridParameters { get; set; }
@@ -27,9 +27,11 @@ namespace FitnessFusion.Data
         public DbSet<Rating> Rating { get; set; }
         public DbSet<Result> Result { get; set; }
         public DbSet<GymProgram> GymProgram { get; set; }
+        // public DbSet<GymSession> GymSession { get; set; }
         public DbSet<Training> Training { get; set; }
-        public DbSet<ExtraGymSession> ExtraGymSessions { get; set; }
+        public DbSet<ExtraGymSession> ExtraGymSession { get; set; }
         public DbSet<GymActivity> GymActivity { get; set; }
+        public DbSet<GymActivityChoice> GymActivityChoice { get; set; }
 
         // Table names
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -47,6 +49,7 @@ namespace FitnessFusion.Data
             modelBuilder.Entity<Training>().ToTable("Trainings");
             modelBuilder.Entity<ExtraGymSession>().ToTable("ExtraGymSessions");
             modelBuilder.Entity<GymActivity>().ToTable("GymActivities");
+            modelBuilder.Entity<GymActivityChoice>().ToTable("GymActivityChoices");
             base.OnModelCreating(modelBuilder);
         }
 

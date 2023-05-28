@@ -10,11 +10,6 @@ namespace FitnessFusion.Models
 
         [Key]
         public int ID { get; set; }
-        [ForeignKey("User")]
-        public int IDUser { get; set; }
-        [ForeignKey("ParametersChoice")]
-        public int IDParametersChoice { get; set; }
-
         #endregion
 
         #region Constructor

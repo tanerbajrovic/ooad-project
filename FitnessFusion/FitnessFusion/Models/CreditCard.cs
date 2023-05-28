@@ -11,6 +11,7 @@ namespace FitnessFusion.Models
         public int ID { get; set; }
         [ForeignKey("User")]
         public int IDUser { get; set; }
+        public User User { get; set; }
         public string CardNumber { get; set;}
         public int CVC { get; set; }
         public string ExpirationDate { get; set; }
