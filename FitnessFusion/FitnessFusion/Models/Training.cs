@@ -8,11 +8,10 @@ namespace FitnessFusion.Models
     {
         #region Properties
 
-        public int EstimatedDuration { get; set; }
         [ForeignKey("GymProgram")]
         public int IDGymProgram { get; set; }
         public GymProgram GymProgram { get; set; }
-
+        public int EstimatedDuration { get; set; }
         #endregion
 
         #region Constructor

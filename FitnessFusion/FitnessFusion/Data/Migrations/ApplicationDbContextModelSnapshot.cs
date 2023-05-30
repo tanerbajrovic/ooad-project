@@ -61,7 +61,7 @@ namespace FitnessFusion.Data.Migrations
                     b.Property<int>("Duration")
                         .HasColumnType("int");
 
-                    b.Property<int>("IDSchedule")
+                    b.Property<int?>("IDSchedule")
                         .HasColumnType("int");
 
                     b.Property<bool>("IsComplete")
@@ -248,12 +248,17 @@ namespace FitnessFusion.Data.Migrations
                     b.Property<int>("IDTrainer")
                         .HasColumnType("int");
 
+                    b.Property<int>("IDUser")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("ID");
 
                     b.HasIndex("IDTrainer");
+
+                    b.HasIndex("IDUser");
 
                     b.ToTable("Schedules");
                 });
@@ -317,7 +322,7 @@ namespace FitnessFusion.Data.Migrations
                     b.Property<int>("IDGymProgram")
                         .HasColumnType("int");
 
-                    b.Property<int>("IDSchedule")
+                    b.Property<int?>("IDSchedule")
                         .HasColumnType("int");
 
                     b.Property<bool>("IsComplete")
@@ -357,9 +362,6 @@ namespace FitnessFusion.Data.Migrations
                     b.Property<int>("IDGymProgram")
                         .HasColumnType("int");
 
-                    b.Property<int>("IDSchedule")
-                        .HasColumnType("int");
-
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
@@ -376,8 +378,6 @@ namespace FitnessFusion.Data.Migrations
                     b.HasKey("ID");
 
                     b.HasIndex("IDGymProgram");
-
-                    b.HasIndex("IDSchedule");
 
                     b.ToTable("Users");
                 });
@@ -597,9 +597,7 @@ namespace FitnessFusion.Data.Migrations
                 {
                     b.HasOne("FitnessFusion.Models.Schedule", "Schedule")
                         .WithMany()
-                        .HasForeignKey("IDSchedule")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("IDSchedule");
 
                     b.Navigation("Schedule");
                 });
@@ -669,7 +667,15 @@ namespace FitnessFusion.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("FitnessFusion.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("IDUser")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Trainer");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("FitnessFusion.Models.Training", b =>
@@ -682,9 +688,7 @@ namespace FitnessFusion.Data.Migrations
 
                     b.HasOne("FitnessFusion.Models.Schedule", "Schedule")
                         .WithMany()
-                        .HasForeignKey("IDSchedule")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("IDSchedule");
 
                     b.Navigation("GymProgram");
 
@@ -699,15 +703,7 @@ namespace FitnessFusion.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("FitnessFusion.Models.Schedule", "Schedule")
-                        .WithMany()
-                        .HasForeignKey("IDSchedule")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("GymProgram");
-
-                    b.Navigation("Schedule");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
