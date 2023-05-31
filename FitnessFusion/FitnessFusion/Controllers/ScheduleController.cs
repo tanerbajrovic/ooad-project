@@ -22,7 +22,7 @@ namespace FitnessFusion.Controllers
         // GET: Schedule
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Schedule.Include(s => s.Trainer);
+            var applicationDbContext = _context.Schedule.Include(s => s.Trainer).Include(s => s.User);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -36,6 +36,7 @@ namespace FitnessFusion.Controllers
 
             var schedule = await _context.Schedule
                 .Include(s => s.Trainer)
+                .Include(s => s.User)
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (schedule == null)
             {
@@ -49,6 +50,7 @@ namespace FitnessFusion.Controllers
         public IActionResult Create()
         {
             ViewData["IDTrainer"] = new SelectList(_context.Trainer, "ID", "ID");
+            ViewData["IDUser"] = new SelectList(_context.User, "ID", "ID");
             return View();
         }
 
@@ -57,7 +59,7 @@ namespace FitnessFusion.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,IDTrainer,StartDate,EndDate")] Schedule schedule)
+        public async Task<IActionResult> Create([Bind("ID,IDUser,IDTrainer,StartDate,EndDate")] Schedule schedule)
         {
             if (ModelState.IsValid)
             {
@@ -66,6 +68,7 @@ namespace FitnessFusion.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["IDTrainer"] = new SelectList(_context.Trainer, "ID", "ID", schedule.IDTrainer);
+            ViewData["IDUser"] = new SelectList(_context.User, "ID", "ID", schedule.IDUser);
             return View(schedule);
         }
 
@@ -83,6 +86,7 @@ namespace FitnessFusion.Controllers
                 return NotFound();
             }
             ViewData["IDTrainer"] = new SelectList(_context.Trainer, "ID", "ID", schedule.IDTrainer);
+            ViewData["IDUser"] = new SelectList(_context.User, "ID", "ID", schedule.IDUser);
             return View(schedule);
         }
 
@@ -91,7 +95,7 @@ namespace FitnessFusion.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,IDTrainer,StartDate,EndDate")] Schedule schedule)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,IDUser,IDTrainer,StartDate,EndDate")] Schedule schedule)
         {
             if (id != schedule.ID)
             {
@@ -119,6 +123,7 @@ namespace FitnessFusion.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["IDTrainer"] = new SelectList(_context.Trainer, "ID", "ID", schedule.IDTrainer);
+            ViewData["IDUser"] = new SelectList(_context.User, "ID", "ID", schedule.IDUser);
             return View(schedule);
         }
 
@@ -132,6 +137,7 @@ namespace FitnessFusion.Controllers
 
             var schedule = await _context.Schedule
                 .Include(s => s.Trainer)
+                .Include(s => s.User)
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (schedule == null)
             {

@@ -22,7 +22,7 @@ namespace FitnessFusion.Controllers
         // GET: User
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.User.Include(u => u.GymProgram).Include(u => u.Schedule);
+            var applicationDbContext = _context.User.Include(u => u.GymProgram);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -36,7 +36,6 @@ namespace FitnessFusion.Controllers
 
             var user = await _context.User
                 .Include(u => u.GymProgram)
-                .Include(u => u.Schedule)
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (user == null)
             {
@@ -50,7 +49,6 @@ namespace FitnessFusion.Controllers
         public IActionResult Create()
         {
             ViewData["IDGymProgram"] = new SelectList(_context.GymProgram, "ID", "ID");
-            ViewData["IDSchedule"] = new SelectList(_context.Schedule, "ID", "ID");
             return View();
         }
 
@@ -59,7 +57,7 @@ namespace FitnessFusion.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ActivityCoefficient,IDSchedule,IDGymProgram,ID,FirstName,LastName,Address,Sex,DateOfBirth,Username,Password,Email")] User user)
+        public async Task<IActionResult> Create([Bind("IDGymProgram,ActivityCoefficient,ID,FirstName,LastName,Address,Sex,DateOfBirth,Username,Password,Email")] User user)
         {
             if (ModelState.IsValid)
             {
@@ -68,7 +66,6 @@ namespace FitnessFusion.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["IDGymProgram"] = new SelectList(_context.GymProgram, "ID", "ID", user.IDGymProgram);
-            ViewData["IDSchedule"] = new SelectList(_context.Schedule, "ID", "ID", user.IDSchedule);
             return View(user);
         }
 
@@ -86,7 +83,6 @@ namespace FitnessFusion.Controllers
                 return NotFound();
             }
             ViewData["IDGymProgram"] = new SelectList(_context.GymProgram, "ID", "ID", user.IDGymProgram);
-            ViewData["IDSchedule"] = new SelectList(_context.Schedule, "ID", "ID", user.IDSchedule);
             return View(user);
         }
 
@@ -95,7 +91,7 @@ namespace FitnessFusion.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ActivityCoefficient,IDSchedule,IDGymProgram,ID,FirstName,LastName,Address,Sex,DateOfBirth,Username,Password,Email")] User user)
+        public async Task<IActionResult> Edit(int id, [Bind("IDGymProgram,ActivityCoefficient,ID,FirstName,LastName,Address,Sex,DateOfBirth,Username,Password,Email")] User user)
         {
             if (id != user.ID)
             {
@@ -123,7 +119,6 @@ namespace FitnessFusion.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["IDGymProgram"] = new SelectList(_context.GymProgram, "ID", "ID", user.IDGymProgram);
-            ViewData["IDSchedule"] = new SelectList(_context.Schedule, "ID", "ID", user.IDSchedule);
             return View(user);
         }
 
@@ -137,7 +132,6 @@ namespace FitnessFusion.Controllers
 
             var user = await _context.User
                 .Include(u => u.GymProgram)
-                .Include(u => u.Schedule)
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (user == null)
             {
