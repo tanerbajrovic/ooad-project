@@ -15,8 +15,8 @@ namespace FitnessFusion.Data
         }
 
         // public DbSet<Person> Person { get; set; }
-        public DbSet<User> User { get; set; }
-        public DbSet<Trainer> Trainer { get; set; }
+        //public DbSet<User> User { get; set; }
+        //public DbSet<Trainer> Trainer { get; set; }
         // public DbSet<Parameters> Parameters { get; set; }
         public DbSet<CreditCard> CreditCard { get; set; }
         public DbSet<Schedule> Schedule { get; set; }
@@ -32,8 +32,8 @@ namespace FitnessFusion.Data
         // Table names
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>().ToTable("Users");
-            modelBuilder.Entity<Trainer>().ToTable("Trainers");
+            //modelBuilder.Entity<User>().ToTable("Users");
+            //modelBuilder.Entity<Trainer>().ToTable("Trainers");
             modelBuilder.Entity<CreditCard>().ToTable("CreditCards");
             modelBuilder.Entity<Schedule>().ToTable("Schedules");
             modelBuilder.Entity<Result>().ToTable("Results");

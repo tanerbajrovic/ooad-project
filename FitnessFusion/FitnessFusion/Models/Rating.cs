@@ -12,9 +12,9 @@ namespace FitnessFusion.Models
         [ForeignKey("GymProgram")]
         public int IDGymProgram { get; set; }
         public GymProgram GymProgram { get; set; }
-        [ForeignKey("User")]
+        [ForeignKey("ApplicationUser")]
         public int? IDUser { get; set; }
-        public User User { get; set; }
+        public ApplicationUser User { get; set; }
         public double RatingValue { get; set; }
         public string Review { get; set; }
 
