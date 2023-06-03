@@ -13,9 +13,12 @@ namespace FitnessFusion.Models
 
         [Key]
         public int ID { get; set; }
-        [ForeignKey("Trainer")]
+        [ForeignKey("ApplicationUser")]
+        public int IDUser { get; set; }
+        public ApplicationUser User { get; set; }
+        [ForeignKey("ApplicationUser")]
         public int IDTrainer { get; set; }
-        public Trainer Trainer { get; set; }
+        public ApplicationUser Trainer { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
 

@@ -59,89 +59,13 @@ namespace FitnessFusion.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Schedules",
-                columns: table => new
-                {
-                    ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    IDTrainer = table.Column<int>(type: "int", nullable: false),
-                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    EndDate = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Schedules", x => x.ID);
-                    table.ForeignKey(
-                        name: "FK_Schedules_Trainers_IDTrainer",
-                        column: x => x.IDTrainer,
-                        principalTable: "Trainers",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ExtraGymSessions",
-                columns: table => new
-                {
-                    ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Duration = table.Column<int>(type: "int", nullable: false),
-                    Note = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    IDSchedule = table.Column<int>(type: "int", nullable: false),
-                    DateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IsComplete = table.Column<bool>(type: "bit", nullable: false),
-                    BurnedCalories = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ExtraGymSessions", x => x.ID);
-                    table.ForeignKey(
-                        name: "FK_ExtraGymSessions_Schedules_IDSchedule",
-                        column: x => x.IDSchedule,
-                        principalTable: "Schedules",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Trainings",
-                columns: table => new
-                {
-                    ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    EstimatedDuration = table.Column<int>(type: "int", nullable: false),
-                    IDGymProgram = table.Column<int>(type: "int", nullable: false),
-                    IDSchedule = table.Column<int>(type: "int", nullable: false),
-                    DateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IsComplete = table.Column<bool>(type: "bit", nullable: false),
-                    BurnedCalories = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Trainings", x => x.ID);
-                    table.ForeignKey(
-                        name: "FK_Trainings_GymPrograms_IDGymProgram",
-                        column: x => x.IDGymProgram,
-                        principalTable: "GymPrograms",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Trainings_Schedules_IDSchedule",
-                        column: x => x.IDSchedule,
-                        principalTable: "Schedules",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Users",
                 columns: table => new
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ActivityCoefficient = table.Column<double>(type: "float", nullable: false),
-                    IDSchedule = table.Column<int>(type: "int", nullable: false),
                     IDGymProgram = table.Column<int>(type: "int", nullable: false),
+                    ActivityCoefficient = table.Column<double>(type: "float", nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -160,45 +84,6 @@ namespace FitnessFusion.Data.Migrations
                         principalTable: "GymPrograms",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Users_Schedules_IDSchedule",
-                        column: x => x.IDSchedule,
-                        principalTable: "Schedules",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "GymActivityChoices",
-                columns: table => new
-                {
-                    ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    IDTraining = table.Column<int>(type: "int", nullable: true),
-                    IDExtraGymSession = table.Column<int>(type: "int", nullable: true),
-                    IDGymActivity = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_GymActivityChoices", x => x.ID);
-                    table.ForeignKey(
-                        name: "FK_GymActivityChoices_ExtraGymSessions_IDExtraGymSession",
-                        column: x => x.IDExtraGymSession,
-                        principalTable: "ExtraGymSessions",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_GymActivityChoices_GymActivities_IDGymActivity",
-                        column: x => x.IDGymActivity,
-                        principalTable: "GymActivities",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_GymActivityChoices_Trainings_IDTraining",
-                        column: x => x.IDTraining,
-                        principalTable: "Trainings",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -290,6 +175,121 @@ namespace FitnessFusion.Data.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Schedules",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IDUser = table.Column<int>(type: "int", nullable: false),
+                    IDTrainer = table.Column<int>(type: "int", nullable: false),
+                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    EndDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Schedules", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_Schedules_Trainers_IDTrainer",
+                        column: x => x.IDTrainer,
+                        principalTable: "Trainers",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Schedules_Users_IDUser",
+                        column: x => x.IDUser,
+                        principalTable: "Users",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ExtraGymSessions",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Duration = table.Column<int>(type: "int", nullable: false),
+                    Note = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IDSchedule = table.Column<int>(type: "int", nullable: true),
+                    DateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsComplete = table.Column<bool>(type: "bit", nullable: false),
+                    BurnedCalories = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ExtraGymSessions", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_ExtraGymSessions_Schedules_IDSchedule",
+                        column: x => x.IDSchedule,
+                        principalTable: "Schedules",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Trainings",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IDGymProgram = table.Column<int>(type: "int", nullable: false),
+                    EstimatedDuration = table.Column<int>(type: "int", nullable: false),
+                    IDSchedule = table.Column<int>(type: "int", nullable: true),
+                    DateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsComplete = table.Column<bool>(type: "bit", nullable: false),
+                    BurnedCalories = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Trainings", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_Trainings_GymPrograms_IDGymProgram",
+                        column: x => x.IDGymProgram,
+                        principalTable: "GymPrograms",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Trainings_Schedules_IDSchedule",
+                        column: x => x.IDSchedule,
+                        principalTable: "Schedules",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "GymActivityChoices",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IDTraining = table.Column<int>(type: "int", nullable: true),
+                    IDExtraGymSession = table.Column<int>(type: "int", nullable: true),
+                    IDGymActivity = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_GymActivityChoices", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_GymActivityChoices_ExtraGymSessions_IDExtraGymSession",
+                        column: x => x.IDExtraGymSession,
+                        principalTable: "ExtraGymSessions",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_GymActivityChoices_GymActivities_IDGymActivity",
+                        column: x => x.IDGymActivity,
+                        principalTable: "GymActivities",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_GymActivityChoices_Trainings_IDTraining",
+                        column: x => x.IDTraining,
+                        principalTable: "Trainings",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_CreditCards_IDUser",
                 table: "CreditCards",
@@ -341,6 +341,11 @@ namespace FitnessFusion.Data.Migrations
                 column: "IDTrainer");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Schedules_IDUser",
+                table: "Schedules",
+                column: "IDUser");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Trainings_IDGymProgram",
                 table: "Trainings",
                 column: "IDGymProgram");
@@ -354,11 +359,6 @@ namespace FitnessFusion.Data.Migrations
                 name: "IX_Users_IDGymProgram",
                 table: "Users",
                 column: "IDGymProgram");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Users_IDSchedule",
-                table: "Users",
-                column: "IDSchedule");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -385,16 +385,16 @@ namespace FitnessFusion.Data.Migrations
                 name: "Trainings");
 
             migrationBuilder.DropTable(
-                name: "Users");
-
-            migrationBuilder.DropTable(
-                name: "GymPrograms");
-
-            migrationBuilder.DropTable(
                 name: "Schedules");
 
             migrationBuilder.DropTable(
                 name: "Trainers");
+
+            migrationBuilder.DropTable(
+                name: "Users");
+
+            migrationBuilder.DropTable(
+                name: "GymPrograms");
         }
     }
 }
