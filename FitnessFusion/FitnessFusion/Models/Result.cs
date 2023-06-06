@@ -22,7 +22,11 @@ namespace FitnessFusion.Models
         public DateTime Date { get; set; }
         public double Mass { get; set; }
         public double Height { get; set; }  
+         public double NeckCircumference { get; set; }
         public double WaistCircumference { get; set; }
+        public double ArmCircumference { get; set; }
+        public double HipsCircumference { get; set; }
+        public double LegCircumference { get; set; }
         public double BenchPress { get; set; }
         public double Squat { get; set; }
         public int AbsTest { get; set; }
