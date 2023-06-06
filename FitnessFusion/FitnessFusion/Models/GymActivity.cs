@@ -8,7 +8,7 @@ namespace FitnessFusion.Models
         #region Properties
 
         [Key]
-        public int ID { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public int DifficultyLevel { get; set; }
 

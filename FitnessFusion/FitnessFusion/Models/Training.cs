@@ -9,7 +9,7 @@ namespace FitnessFusion.Models
         #region Properties
 
         [ForeignKey("GymProgram")]
-        public int IDGymProgram { get; set; }
+        public int GymProgramId { get; set; }
         public GymProgram GymProgram { get; set; }
         public int EstimatedDuration { get; set; }
         #endregion

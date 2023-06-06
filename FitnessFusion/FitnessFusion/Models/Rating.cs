@@ -8,12 +8,12 @@ namespace FitnessFusion.Models
         #region Properties
 
         [Key]
-        public int ID { get; set; }
+        public int Id { get; set; }
         [ForeignKey("GymProgram")]
-        public int IDGymProgram { get; set; }
+        public int GymProgramId { get; set; }
         public GymProgram GymProgram { get; set; }
         [ForeignKey("ApplicationUser")]
-        public int? IDUser { get; set; }
+        public string UserId { get; set; }
         public ApplicationUser User { get; set; }
         public double RatingValue { get; set; }
         public string Review { get; set; }
@@ -21,13 +21,6 @@ namespace FitnessFusion.Models
         #endregion
 
         #region Constructor
-
-        public Rating(int id, double rating, string review)
-        {
-            ID = id;
-            RatingValue = rating;
-            Review = review;
-        }
 
         public Rating () { }
 

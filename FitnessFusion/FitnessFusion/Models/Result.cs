@@ -11,12 +11,12 @@ namespace FitnessFusion.Models
         #region Properties
 
         [Key]
-        public int ID { get; set; }
+        public int Id { get; set; }
         [ForeignKey("ApplicationUser")]
-        public int? IDUser { get; set; }
+        public string UserId { get; set; }
         public ApplicationUser User { get; set; }
         [ForeignKey("ApplicationUser")]
-        public int IDTrainer { get; set; }
+        public string TrainerId { get; set; }
         public ApplicationUser Trainer { get; set; }
         public int Calories { get; set; }
         public DateTime Date { get; set; }
