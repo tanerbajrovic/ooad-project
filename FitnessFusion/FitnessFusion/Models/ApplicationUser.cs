@@ -18,7 +18,7 @@ namespace FitnessFusion.Models
 
         // GymUser Properties
         [ForeignKey("GymProgram")]
-        public int IDGymProgram { get; set; }
+        public int GymProgramId { get; set; }
         public GymProgram GymProgram { get; set; }
         [NotMapped]
         public List<HealthIssueType> HealthIssues { get; set; }

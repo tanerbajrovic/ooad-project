@@ -10,9 +10,9 @@ namespace FitnessFusion.Models
         #region Properties
         
         [Key]
-        public int ID { get; set; }
+        public int Id { get; set; }
         [ForeignKey("Schedule")]
-        public int? IDSchedule { get; set; }
+        public int ScheduleId { get; set; }
         public Schedule Schedule { get; set; }
         public DateTime DateTime { get; set; }   
         public bool IsComplete { get; set; }
@@ -21,14 +21,6 @@ namespace FitnessFusion.Models
         #endregion
 
         #region Constructor
-
-        protected GymSession(int id, DateTime dateTime, bool isComplete, int burnedCalories)
-        {
-            ID = id;
-            DateTime = dateTime;
-            IsComplete = isComplete;
-            BurnedCalories = burnedCalories;
-        }
 
         protected GymSession() { }
 

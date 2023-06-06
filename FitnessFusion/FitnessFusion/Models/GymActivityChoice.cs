@@ -8,15 +8,15 @@ namespace FitnessFusion.Models
         #region Properties
 
         [Key]
-        public int ID {  get; set; }
+        public int Id {  get; set; }
         [ForeignKey("Training")]
-        public int? IDTraining { get; set; }
+        public int? TrainingId { get; set; }
         public Training Training { get; set; }
         [ForeignKey("ExtraGymSession")]
-        public int? IDExtraGymSession { get; set; }
+        public int? ExtraGymSessionId { get; set; }
         public ExtraGymSession ExtraGymSession { get; set; }
         [ForeignKey("GymActivity")]
-        public int IDGymActivity { get; set; }
+        public int GymActivityId { get; set; }
         public GymActivity GymActivity { get; set; }
 
         #endregion

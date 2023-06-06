@@ -8,9 +8,9 @@ namespace FitnessFusion.Models
         #region Properties
 
         [Key]
-        public int ID { get; set; }
+        public int Id { get; set; }
         [ForeignKey("ApplicationUser")]
-        public int IDUser { get; set; }
+        public string UserId { get; set; }
         public ApplicationUser User { get; set; }
         public string CardNumber { get; set;}
         public int CVC { get; set; }
@@ -19,14 +19,6 @@ namespace FitnessFusion.Models
         #endregion
 
         #region Constructors
-
-        public CreditCard(int id, string cardNumber, int cvc, string expirationDate)
-        {
-            ID = id;
-            CardNumber = cardNumber;
-            CVC = cvc;
-            ExpirationDate = expirationDate;
-        }
 
         public CreditCard() { }
 
