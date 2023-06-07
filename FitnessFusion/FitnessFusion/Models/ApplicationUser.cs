@@ -16,17 +16,6 @@ namespace FitnessFusion.Models
         public char Sex { get; set; }
         public DateTime DateOfBirth { get; set; }
 
-        // GymUser Properties
-        [ForeignKey("GymProgram")]
-        public int GymProgramId { get; set; }
-        public GymProgram GymProgram { get; set; }
-        [NotMapped]
-        public List<HealthIssueType> HealthIssues { get; set; }
-        public double ActivityCoefficient { get; set; }
-
-        // Trainer Properties
-        public Experience Experience { get; set; }
-
         #endregion
 
         #region Constructor

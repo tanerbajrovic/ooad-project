@@ -7,12 +7,6 @@ namespace FitnessFusion.Data.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<double>(
-                name: "ActivityCoefficient",
-                table: "AspNetUsers",
-                type: "float",
-                nullable: true);
-
             migrationBuilder.AddColumn<string>(
                 name: "Address",
                 table: "AspNetUsers",
@@ -32,22 +26,10 @@ namespace FitnessFusion.Data.Migrations
                 nullable: false,
                 defaultValue: "");
 
-            migrationBuilder.AddColumn<int>(
-                name: "Experience",
-                table: "AspNetUsers",
-                type: "int",
-                nullable: true);
-
             migrationBuilder.AddColumn<string>(
                 name: "FirstName",
                 table: "AspNetUsers",
                 type: "nvarchar(max)",
-                nullable: true);
-
-            migrationBuilder.AddColumn<int>(
-                name: "GymProgramId",
-                table: "AspNetUsers",
-                type: "int",
                 nullable: true);
 
             migrationBuilder.AddColumn<string>(
@@ -126,7 +108,11 @@ namespace FitnessFusion.Data.Migrations
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Mass = table.Column<double>(type: "float", nullable: false),
                     Height = table.Column<double>(type: "float", nullable: false),
+                    NeckCircumference = table.Column<double>(type: "float", nullable: false),
                     WaistCircumference = table.Column<double>(type: "float", nullable: false),
+                    ArmCircumference = table.Column<double>(type: "float", nullable: false),
+                    HipsCircumference = table.Column<double>(type: "float", nullable: false),
+                    LegCircumference = table.Column<double>(type: "float", nullable: false),
                     BenchPress = table.Column<double>(type: "float", nullable: false),
                     Squat = table.Column<double>(type: "float", nullable: false),
                     AbsTest = table.Column<int>(type: "int", nullable: false),
@@ -182,6 +168,26 @@ namespace FitnessFusion.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Trainers",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ApplicationUserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    Experience = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Trainers", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Trainers_AspNetUsers_ApplicationUserId",
+                        column: x => x.ApplicationUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Rating",
                 columns: table => new
                 {
@@ -203,6 +209,33 @@ namespace FitnessFusion.Data.Migrations
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Rating_GymPrograms_GymProgramId",
+                        column: x => x.GymProgramId,
+                        principalTable: "GymPrograms",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Users",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ApplicationUserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    GymProgramId = table.Column<int>(type: "int", nullable: false),
+                    ActivityCoefficient = table.Column<double>(type: "float", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Users", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Users_AspNetUsers_ApplicationUserId",
+                        column: x => x.ApplicationUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Users_GymPrograms_GymProgramId",
                         column: x => x.GymProgramId,
                         principalTable: "GymPrograms",
                         principalColumn: "Id",
@@ -297,11 +330,6 @@ namespace FitnessFusion.Data.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_AspNetUsers_GymProgramId",
-                table: "AspNetUsers",
-                column: "GymProgramId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_CreditCards_UserId",
                 table: "CreditCards",
                 column: "UserId");
@@ -357,6 +385,11 @@ namespace FitnessFusion.Data.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Trainers_ApplicationUserId",
+                table: "Trainers",
+                column: "ApplicationUserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Trainings_GymProgramId",
                 table: "Trainings",
                 column: "GymProgramId");
@@ -366,21 +399,19 @@ namespace FitnessFusion.Data.Migrations
                 table: "Trainings",
                 column: "ScheduleId");
 
-            migrationBuilder.AddForeignKey(
-                name: "FK_AspNetUsers_GymPrograms_GymProgramId",
-                table: "AspNetUsers",
-                column: "GymProgramId",
-                principalTable: "GymPrograms",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+            migrationBuilder.CreateIndex(
+                name: "IX_Users_ApplicationUserId",
+                table: "Users",
+                column: "ApplicationUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Users_GymProgramId",
+                table: "Users",
+                column: "GymProgramId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_AspNetUsers_GymPrograms_GymProgramId",
-                table: "AspNetUsers");
-
             migrationBuilder.DropTable(
                 name: "CreditCards");
 
@@ -392,6 +423,12 @@ namespace FitnessFusion.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Results");
+
+            migrationBuilder.DropTable(
+                name: "Trainers");
+
+            migrationBuilder.DropTable(
+                name: "Users");
 
             migrationBuilder.DropTable(
                 name: "ExtraGymSessions");
@@ -408,14 +445,6 @@ namespace FitnessFusion.Data.Migrations
             migrationBuilder.DropTable(
                 name: "Schedules");
 
-            migrationBuilder.DropIndex(
-                name: "IX_AspNetUsers_GymProgramId",
-                table: "AspNetUsers");
-
-            migrationBuilder.DropColumn(
-                name: "ActivityCoefficient",
-                table: "AspNetUsers");
-
             migrationBuilder.DropColumn(
                 name: "Address",
                 table: "AspNetUsers");
@@ -429,15 +458,7 @@ namespace FitnessFusion.Data.Migrations
                 table: "AspNetUsers");
 
             migrationBuilder.DropColumn(
-                name: "Experience",
-                table: "AspNetUsers");
-
-            migrationBuilder.DropColumn(
                 name: "FirstName",
-                table: "AspNetUsers");
-
-            migrationBuilder.DropColumn(
-                name: "GymProgramId",
                 table: "AspNetUsers");
 
             migrationBuilder.DropColumn(
