@@ -16,6 +16,7 @@ namespace FitnessFusion.Models
         public string LastName { get; set; }
         [DisplayName("Address")]
         public string Address { get; set; }
+        [RegularExpression("[MmFf]", ErrorMessage = "Sex must be either 'M' / 'm' or 'F' / 'f'.")]
         public char Sex { get; set; }
         [DisplayName("Date of Birth")]
         public DateTime DateOfBirth { get; set; }

@@ -22,15 +22,22 @@ namespace FitnessFusion.Models
         public Trainer Trainer { get; set; }
         public int Calories { get; set; }
         public DateTime Date { get; set; }
+
+        [Range(40, 160, ErrorMessage = "Mass must be between 40 and 160.")]
         public double Mass { get; set; }
+
+        [Range(130, 230, ErrorMessage = "Height must be between 130 and 230.")]
         public double Height { get; set; }
         [DisplayName("Neck Circumference")]
+        [Range(20, 80, ErrorMessage = "Neck circumference must be between 20 and 80.")]
         public double NeckCircumference { get; set; }
         [DisplayName("Waist Circumference")]
+        [Range(40, 130, ErrorMessage = "Waist circumference must be between 40 and 130.")]
         public double WaistCircumference { get; set; }
         [DisplayName("Arm Circumference")]
         public double ArmCircumference { get; set; }
         [DisplayName("Hips Circumference")]
+        [Range(40, 130, ErrorMessage = "Hips circumference must be between 40 and 130.")]
         public double HipsCircumference { get; set; }
         [DisplayName("Leg Circumference")]
         public double LegCircumference { get; set; }
