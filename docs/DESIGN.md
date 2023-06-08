@@ -1,4 +1,6 @@
-# Design
+# Project Design
+
+Below you can see all the documents which have to do with project design.
 
 - [Project specifications](project-specifications-bhs-v2.pdf)
 - [Analysis and system design](analysis-and-system-design-bhs-v2.pdf)
@@ -11,7 +13,8 @@
     - [Sequence diagram](sequence_diagram_v1.pdf)
     - [Deployment diagram](deployment_diagram_v1.pdf)
     - [Package diagram](package_diagram_v1.pdf)
-  - [ER diagram](entity-relationship-diagram-bhs-v2.pdf)
+    - [Component diagram](component_diagram_v1.pdf)
+  - [ER diagram](entity-relationship-diagram-bhs-v4.pdf)
 - [SOLID principles](solid-principles-bhs-v2.pdf)
 - Design patterns
   - [Structural patterns](structural-design-patterns-bhs-v1.pdf)
