@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FitnessFusion.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230606060538_Version1")]
-    partial class Version1
+    [Migration("20230608062610_Final")]
+    partial class Final
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -37,8 +37,8 @@ namespace FitnessFusion.Data.Migrations
                     b.Property<string>("ExpirationDate")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -69,7 +69,7 @@ namespace FitnessFusion.Data.Migrations
                     b.Property<string>("Note")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ScheduleId")
+                    b.Property<int?>("ScheduleId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -164,8 +164,8 @@ namespace FitnessFusion.Data.Migrations
                     b.Property<string>("Review")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -186,6 +186,9 @@ namespace FitnessFusion.Data.Migrations
                     b.Property<int>("AbsTest")
                         .HasColumnType("int");
 
+                    b.Property<double>("ArmCircumference")
+                        .HasColumnType("float");
+
                     b.Property<double>("BenchPress")
                         .HasColumnType("float");
 
@@ -198,10 +201,19 @@ namespace FitnessFusion.Data.Migrations
                     b.Property<double>("Height")
                         .HasColumnType("float");
 
+                    b.Property<double>("HipsCircumference")
+                        .HasColumnType("float");
+
                     b.Property<double>("HorizontalJump")
                         .HasColumnType("float");
 
+                    b.Property<double>("LegCircumference")
+                        .HasColumnType("float");
+
                     b.Property<double>("Mass")
+                        .HasColumnType("float");
+
+                    b.Property<double>("NeckCircumference")
                         .HasColumnType("float");
 
                     b.Property<int>("PushUps")
@@ -216,11 +228,11 @@ namespace FitnessFusion.Data.Migrations
                     b.Property<double>("Squat")
                         .HasColumnType("float");
 
-                    b.Property<string>("TrainerId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("TrainerId")
+                        .HasColumnType("int");
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
                     b.Property<double>("VerticalJump")
                         .HasColumnType("float");
@@ -250,11 +262,11 @@ namespace FitnessFusion.Data.Migrations
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("TrainerId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("TrainerId")
+                        .HasColumnType("int");
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -263,6 +275,26 @@ namespace FitnessFusion.Data.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Schedules");
+                });
+
+            modelBuilder.Entity("FitnessFusion.Models.Trainer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ApplicationUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("Experience")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.ToTable("Trainers");
                 });
 
             modelBuilder.Entity("FitnessFusion.Models.Training", b =>
@@ -287,7 +319,7 @@ namespace FitnessFusion.Data.Migrations
                     b.Property<bool>("IsComplete")
                         .HasColumnType("bit");
 
-                    b.Property<int>("ScheduleId")
+                    b.Property<int?>("ScheduleId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -297,6 +329,31 @@ namespace FitnessFusion.Data.Migrations
                     b.HasIndex("ScheduleId");
 
                     b.ToTable("Trainings");
+                });
+
+            modelBuilder.Entity("FitnessFusion.Models.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<double>("ActivityCoefficient")
+                        .HasColumnType("float");
+
+                    b.Property<string>("ApplicationUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("GymProgramId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.HasIndex("GymProgramId");
+
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -509,23 +566,14 @@ namespace FitnessFusion.Data.Migrations
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
-                    b.Property<double>("ActivityCoefficient")
-                        .HasColumnType("float");
-
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("Experience")
-                        .HasColumnType("int");
-
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("GymProgramId")
-                        .HasColumnType("int");
 
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
@@ -534,16 +582,16 @@ namespace FitnessFusion.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(1)");
 
-                    b.HasIndex("GymProgramId");
-
                     b.HasDiscriminator().HasValue("ApplicationUser");
                 });
 
             modelBuilder.Entity("FitnessFusion.Models.CreditCard", b =>
                 {
-                    b.HasOne("FitnessFusion.Models.ApplicationUser", "User")
+                    b.HasOne("FitnessFusion.Models.User", "User")
                         .WithMany()
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("User");
                 });
@@ -552,9 +600,7 @@ namespace FitnessFusion.Data.Migrations
                 {
                     b.HasOne("FitnessFusion.Models.Schedule", "Schedule")
                         .WithMany()
-                        .HasForeignKey("ScheduleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ScheduleId");
 
                     b.Navigation("Schedule");
                 });
@@ -590,7 +636,7 @@ namespace FitnessFusion.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("FitnessFusion.Models.ApplicationUser", "User")
+                    b.HasOne("FitnessFusion.Models.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
 
@@ -601,13 +647,17 @@ namespace FitnessFusion.Data.Migrations
 
             modelBuilder.Entity("FitnessFusion.Models.Result", b =>
                 {
-                    b.HasOne("FitnessFusion.Models.ApplicationUser", "Trainer")
+                    b.HasOne("FitnessFusion.Models.Trainer", "Trainer")
                         .WithMany()
-                        .HasForeignKey("TrainerId");
+                        .HasForeignKey("TrainerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("FitnessFusion.Models.ApplicationUser", "User")
+                    b.HasOne("FitnessFusion.Models.User", "User")
                         .WithMany()
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Trainer");
 
@@ -616,17 +666,30 @@ namespace FitnessFusion.Data.Migrations
 
             modelBuilder.Entity("FitnessFusion.Models.Schedule", b =>
                 {
-                    b.HasOne("FitnessFusion.Models.ApplicationUser", "Trainer")
+                    b.HasOne("FitnessFusion.Models.Trainer", "Trainer")
                         .WithMany()
-                        .HasForeignKey("TrainerId");
+                        .HasForeignKey("TrainerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("FitnessFusion.Models.ApplicationUser", "User")
+                    b.HasOne("FitnessFusion.Models.User", "User")
                         .WithMany()
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Trainer");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("FitnessFusion.Models.Trainer", b =>
+                {
+                    b.HasOne("FitnessFusion.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("ApplicationUserId");
+
+                    b.Navigation("ApplicationUser");
                 });
 
             modelBuilder.Entity("FitnessFusion.Models.Training", b =>
@@ -639,13 +702,28 @@ namespace FitnessFusion.Data.Migrations
 
                     b.HasOne("FitnessFusion.Models.Schedule", "Schedule")
                         .WithMany()
-                        .HasForeignKey("ScheduleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ScheduleId");
 
                     b.Navigation("GymProgram");
 
                     b.Navigation("Schedule");
+                });
+
+            modelBuilder.Entity("FitnessFusion.Models.User", b =>
+                {
+                    b.HasOne("FitnessFusion.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("ApplicationUserId");
+
+                    b.HasOne("FitnessFusion.Models.GymProgram", "GymProgram")
+                        .WithMany()
+                        .HasForeignKey("GymProgramId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ApplicationUser");
+
+                    b.Navigation("GymProgram");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -697,17 +775,6 @@ namespace FitnessFusion.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("FitnessFusion.Models.ApplicationUser", b =>
-                {
-                    b.HasOne("FitnessFusion.Models.GymProgram", "GymProgram")
-                        .WithMany()
-                        .HasForeignKey("GymProgramId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("GymProgram");
                 });
 #pragma warning restore 612, 618
         }

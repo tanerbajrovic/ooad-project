@@ -2,9 +2,9 @@
 {
     public enum GymProgramType
     {
-        STRENGTH,
-        ENDURANCE,
-        FLEXIBILITY,
-        BALANCE
+        Strength,
+        Endurance,
+        Flexibility,
+        Balance
     }
 }

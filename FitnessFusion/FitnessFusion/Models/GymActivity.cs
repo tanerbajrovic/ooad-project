@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FitnessFusion.Models
@@ -10,6 +11,7 @@ namespace FitnessFusion.Models
         [Key]
         public int Id { get; set; }
         public string Name { get; set; }
+        [DisplayName("Difficulty Level")]
         public int DifficultyLevel { get; set; }
 
         #endregion

@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics.Eventing.Reader;
@@ -13,13 +14,15 @@ namespace FitnessFusion.Models
 
         [Key]
         public int Id { get; set; }
-        [ForeignKey("ApplicationUser")]
-        public string UserId { get; set; }
-        public ApplicationUser User { get; set; }
-        [ForeignKey("ApplicationUser")]
-        public string TrainerId { get; set; }
-        public ApplicationUser Trainer { get; set; }
+        [ForeignKey("User")]
+        public int UserId { get; set; }
+        public User User { get; set; }
+        [ForeignKey("Trainer")]
+        public int TrainerId { get; set; }
+        public Trainer Trainer { get; set; }
+        [DisplayName("Start Date")]
         public DateTime StartDate { get; set; }
+        [DisplayName("End Date")]
         public DateTime EndDate { get; set; }
 
         #endregion
