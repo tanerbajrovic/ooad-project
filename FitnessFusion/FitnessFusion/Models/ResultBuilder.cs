@@ -5,7 +5,7 @@ namespace FitnessFusion.Models.BuilderDP
     public class ResultBuilder : IBuilder
     {
         private Result result = new Result();
-        public void AddTrainerId(string id)
+        public void AddTrainerId(int id)
         {
             result.TrainerId = id;
         }

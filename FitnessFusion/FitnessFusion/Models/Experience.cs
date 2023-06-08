@@ -2,8 +2,8 @@
 {
     public enum Experience
     {
-        NOVICE,
-        ASSISTENT,
-        EXPERT
+        Novice,
+        Assistant,
+        Expert
     }
 }

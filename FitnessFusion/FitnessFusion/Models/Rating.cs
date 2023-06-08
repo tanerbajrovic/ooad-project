@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FitnessFusion.Models
@@ -12,9 +13,10 @@ namespace FitnessFusion.Models
         [ForeignKey("GymProgram")]
         public int GymProgramId { get; set; }
         public GymProgram GymProgram { get; set; }
-        [ForeignKey("ApplicationUser")]
-        public string UserId { get; set; }
-        public ApplicationUser User { get; set; }
+        [ForeignKey("User")]
+        public int? UserId { get; set; }
+        public User User { get; set; }
+        [DisplayName("Rating Value")]
         public double RatingValue { get; set; }
         public string Review { get; set; }
 

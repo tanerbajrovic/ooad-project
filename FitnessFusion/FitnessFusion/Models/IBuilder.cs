@@ -4,7 +4,7 @@ namespace FitnessFusion.Models.BuilderDP
 {
     public interface IBuilder
     {
-        void AddTrainerId(string id);
+        void AddTrainerId(int id);
         void AddCalories(int calories);
         void AddDate(DateTime date);
         void AddMass(double mass);
