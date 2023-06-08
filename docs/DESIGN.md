@@ -1,15 +1,21 @@
-# Design and Documentation
+# Design
 
-## Design
-
-- [Project specifications (BHS)](project-specifications-bhs-v3.pdf)
-- [Use case scenarios (BHS)](use-case-scenarios-bhs-v2.pdf)
-- [Use case diagram (BHS)](use-case-diagram-bhs-v1.pdf)
-- [Activity diagrams (BHS)](activity-diagrams-bhs-v2.pdf)
-- [Analysis and system design (BHS)](analysis-and-system-design-bhs-v2.pdf)
-- [Class diagram (BHS)](class-diagram-v3.pdf)
-- [SOLID Principles (BHS)](solid-principles-bhs-v1.pdf)
+- [Project specifications](project-specifications-bhs-v2.pdf)
+- [Analysis and system design](analysis-and-system-design-bhs-v2.pdf)
+- Diagrams
+  - UML diagrams
+    - [Use-case diagram](use-case-diagram-bhs-v1.pdf) ([Use-case scenarios](use-case-scenarios-bhs-v2.pdf))
+    - [Activity diagram](activity-diagrams-bhs-v2.pdf)
+    - [Class diagram](class-diagram-v5.pdf)
+    - [MVC diagram](MVC-diagram-v3.pdf)
+    - [Sequence diagram](sequence_diagram_v1.pdf)
+    - [Deployment diagram](deployment_diagram_v1.pdf)
+    - [Package diagram](package_diagram_v1.pdf)
+  - [ER diagram](entity-relationship-diagram-bhs-v2.pdf)
+- [SOLID principles](solid-principles-bhs-v2.pdf)
+- Design patterns
+  - [Structural patterns](structural-design-patterns-bhs-v1.pdf)
+  - [Creational patterns](creational-design-patterns-bhs-v1.pdf)
+  - [Behavioral patterns](behavioral-design-atterns-bhs-v1.pdf)
 
 Previous versions of the files above may be found in the `docs/archived` folder.
-
-## Documentation
