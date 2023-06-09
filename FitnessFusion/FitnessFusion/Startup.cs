@@ -34,7 +34,8 @@ namespace FitnessFusion
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddRoles<IdentityRole>();
             services.AddControllersWithViews();
         }
 
