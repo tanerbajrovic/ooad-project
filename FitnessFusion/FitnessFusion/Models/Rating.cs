@@ -14,10 +14,13 @@ namespace FitnessFusion.Models
         public int GymProgramId { get; set; }
         public GymProgram GymProgram { get; set; }
         [ForeignKey("User")]
-        public int? UserId { get; set; }
+        public string UserId { get; set; }
         public User User { get; set; }
         [DisplayName("Rating Value")]
+        [Range(0, 5.0)]
         public double RatingValue { get; set; }
+        [Required]
+        [StringLength(100, ErrorMessage = "Review cannot be longer than 100 characters.")]
         public string Review { get; set; }
 
         #endregion

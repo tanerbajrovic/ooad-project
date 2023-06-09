@@ -13,9 +13,9 @@ namespace FitnessFusion.Models
         [Key]
         public int Id { get; set; }
         [ForeignKey("Schedule")]
-        public int? ScheduleId { get; set; }
+        public int ScheduleId { get; set; }
         public Schedule Schedule { get; set; }
-        public DateTime DateTime { get; set; }   
+        public DateTime StartTime { get; set; }   
         public bool IsComplete { get; set; }
         [DisplayName("Burned Calories")]
         public int BurnedCalories { get; set; }

@@ -5,20 +5,16 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FitnessFusion.Models
 {
-    public class User
+    public class User : ApplicationUser
     {
         #region Properties
-        [Key]
-        public int Id { get; set; }
-        [ForeignKey("ApplicationUser")]
-        public string ApplicationUserId { get; set; }
-        public ApplicationUser ApplicationUser { get; set; }
-        [DisplayName("Gym Program")]
+
         [ForeignKey("GymProgram")]
         public int GymProgramId { get; set; }
         public GymProgram GymProgram { get; set; }
         [NotMapped]
-        public List<HealthIssueType> HealthIssues { get; set; }
+        [Display(Name = "Health Issues")]
+        public List<HealthIssueType> HealthIssues { get; set; } = new List<HealthIssueType>();
         [DisplayName("Activity Coefficient")]
         [Range(1, 6, ErrorMessage = "Activity coefficient must be between 1 and 6.")]
         public double ActivityCoefficient { get; set; }

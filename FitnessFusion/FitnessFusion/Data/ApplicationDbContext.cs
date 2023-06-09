@@ -7,7 +7,7 @@ using System.Text;
 
 namespace FitnessFusion.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -29,16 +29,28 @@ namespace FitnessFusion.Data
         // Table names
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>().ToTable("Users");
-            modelBuilder.Entity<Trainer>().ToTable("Trainers");
-            modelBuilder.Entity<CreditCard>().ToTable("CreditCards");
-            modelBuilder.Entity<Schedule>().ToTable("Schedules");
-            modelBuilder.Entity<Result>().ToTable("Results");
-            modelBuilder.Entity<GymProgram>().ToTable("GymPrograms");
-            modelBuilder.Entity<Training>().ToTable("Trainings");
-            modelBuilder.Entity<ExtraGymSession>().ToTable("ExtraGymSessions");
-            modelBuilder.Entity<GymActivity>().ToTable("GymActivities");
-            modelBuilder.Entity<GymActivityChoice>().ToTable("GymActivityChoices");
+            modelBuilder.Entity<User>()
+                .ToTable("Users");
+            modelBuilder.Entity<Trainer>()
+                .ToTable("Trainers");
+            modelBuilder.Entity<CreditCard>()
+                .ToTable("CreditCards");
+            modelBuilder.Entity<Schedule>()
+                .ToTable("Schedules");
+            modelBuilder.Entity<Result>()
+                .ToTable("Results");
+            modelBuilder.Entity<Rating>()
+                .ToTable("Ratings");
+            modelBuilder.Entity<GymProgram>()
+                .ToTable("GymPrograms");
+            modelBuilder.Entity<Training>()
+                .ToTable("Trainings");
+            modelBuilder.Entity<ExtraGymSession>()
+                .ToTable("ExtraGymSessions");
+            modelBuilder.Entity<GymActivity>()
+                .ToTable("GymActivities");
+            modelBuilder.Entity<GymActivityChoice>()
+                .ToTable("GymActivityChoices");
             base.OnModelCreating(modelBuilder);
         }
 

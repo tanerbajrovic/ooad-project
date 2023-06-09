@@ -8,15 +8,18 @@ namespace FitnessFusion.Models
     {
         #region Properties
 
+        // TODO: Add Regex annotations for CardNumber
+        // and CVC
+
         [Key]
         public int Id { get; set; }
         [ForeignKey("User")]
-        public int UserId { get; set; }
+        public string UserId { get; set; }
         public User User { get; set; }
-        [DisplayName("Card Number")]
+        [Display(Name = "Card Number")]
         public string CardNumber { get; set;}
         public int CVC { get; set; }
-        [DisplayName("Expiration Date")]
+        [Display(Name = "Expiration Date")]
         public string ExpirationDate { get; set; }
 
         #endregion

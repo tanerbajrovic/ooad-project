@@ -13,9 +13,6 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.ApplicationUser)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Experience)
             </th>
             <th></th>
@@ -24,9 +21,6 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ApplicationUser.Id)
-            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Experience)
             </td>
