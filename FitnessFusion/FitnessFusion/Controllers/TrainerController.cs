@@ -20,13 +20,14 @@ namespace FitnessFusion.Controllers
         }
 
         // GET: Trainer
-        public async Task<IActionResult> Index()
-        {
-            var applicationDbContext = _context.Trainer.Include(t => t.ApplicationUser);
-            return View(await applicationDbContext.ToListAsync());
-        }
+        //public async Task<IActionResult> Index()
+        //{
+        //    var applicationDbContext = _context.Trainer.Include(t => t.ApplicationUser);
+        //    return View(await applicationDbContext.ToListAsync());
+        //}
 
         // GET: Trainer/Details/5
+        /*
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -44,8 +45,10 @@ namespace FitnessFusion.Controllers
 
             return View(trainer);
         }
+        */
 
         // GET: Trainer/Create
+        /*
         public IActionResult Create()
         {
             ViewData["ApplicationUserId"] = new SelectList(_context.Set<ApplicationUser>(), "Id", "Id");
@@ -68,8 +71,10 @@ namespace FitnessFusion.Controllers
             ViewData["ApplicationUserId"] = new SelectList(_context.Set<ApplicationUser>(), "Id", "Id", trainer.ApplicationUserId);
             return View(trainer);
         }
+        */
 
         // GET: Trainer/Edit/5
+        /*
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -85,10 +90,12 @@ namespace FitnessFusion.Controllers
             ViewData["ApplicationUserId"] = new SelectList(_context.Set<ApplicationUser>(), "Id", "Id", trainer.ApplicationUserId);
             return View(trainer);
         }
+        */
 
         // POST: Trainer/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /*
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,ApplicationUserId,Experience")] Trainer trainer)
@@ -121,8 +128,10 @@ namespace FitnessFusion.Controllers
             ViewData["ApplicationUserId"] = new SelectList(_context.Set<ApplicationUser>(), "Id", "Id", trainer.ApplicationUserId);
             return View(trainer);
         }
+        */
 
         // GET: Trainer/Delete/5
+        /*
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -140,8 +149,10 @@ namespace FitnessFusion.Controllers
 
             return View(trainer);
         }
+        */
 
         // POST: Trainer/Delete/5
+        /*
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -151,10 +162,13 @@ namespace FitnessFusion.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+        */
 
+        /*
         private bool TrainerExists(int id)
         {
             return _context.Trainer.Any(e => e.Id == id);
         }
+        */
     }
 }

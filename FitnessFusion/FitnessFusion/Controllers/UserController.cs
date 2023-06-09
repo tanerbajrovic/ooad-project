@@ -20,13 +20,16 @@ namespace FitnessFusion.Controllers
         }
 
         // GET: User
+        /*
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.User.Include(u => u.ApplicationUser).Include(u => u.GymProgram);
             return View(await applicationDbContext.ToListAsync());
         }
+        */
 
         // GET: User/Details/5
+        /*
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -45,18 +48,22 @@ namespace FitnessFusion.Controllers
 
             return View(user);
         }
+        */
 
         // GET: User/Create
+        /*
         public IActionResult Create()
         {
             ViewData["ApplicationUserId"] = new SelectList(_context.Set<ApplicationUser>(), "Id", "Id");
             ViewData["GymProgramId"] = new SelectList(_context.GymProgram, "Id", "Id");
             return View();
         }
+        */
 
         // POST: User/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /*
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,ApplicationUserId,GymProgramId,ActivityCoefficient")] User user)
@@ -71,8 +78,10 @@ namespace FitnessFusion.Controllers
             ViewData["GymProgramId"] = new SelectList(_context.GymProgram, "Id", "Id", user.GymProgramId);
             return View(user);
         }
+        */
 
         // GET: User/Edit/5
+        /*
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -89,10 +98,12 @@ namespace FitnessFusion.Controllers
             ViewData["GymProgramId"] = new SelectList(_context.GymProgram, "Id", "Id", user.GymProgramId);
             return View(user);
         }
+        */
 
         // POST: User/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /*
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,ApplicationUserId,GymProgramId,ActivityCoefficient")] User user)
@@ -126,8 +137,10 @@ namespace FitnessFusion.Controllers
             ViewData["GymProgramId"] = new SelectList(_context.GymProgram, "Id", "Id", user.GymProgramId);
             return View(user);
         }
+        */
 
         // GET: User/Delete/5
+        /*
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -146,8 +159,10 @@ namespace FitnessFusion.Controllers
 
             return View(user);
         }
+        */
 
         // POST: User/Delete/5
+        /*
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -157,10 +172,13 @@ namespace FitnessFusion.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+        */
 
+        /*
         private bool UserExists(int id)
         {
             return _context.User.Any(e => e.Id == id);
         }
+        */
     }
 }
