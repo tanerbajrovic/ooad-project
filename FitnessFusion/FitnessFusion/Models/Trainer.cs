@@ -3,15 +3,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FitnessFusion.Models
 {
-    public class Trainer
+    public class Trainer : ApplicationUser
     {
         #region Properties
 
-        [Key]
-        public int Id { get; set; }
-        [ForeignKey("ApplicationUser")]
-        public string ApplicationUserId { get; set; }
-        public ApplicationUser ApplicationUser { get; set; }
+        [Display(Name = "Trainer's Experience")]
         public Experience Experience { get; set; }
 
         #endregion

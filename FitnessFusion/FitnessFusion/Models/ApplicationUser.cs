@@ -4,20 +4,31 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Xml.Linq;
 
 namespace FitnessFusion.Models
 {
     public class ApplicationUser : IdentityUser
     {
         #region Properties
-        [DisplayName("First Name")]
+
+        [Required]
+        [StringLength(25, ErrorMessage = "First name cannot be longer than 25 characters")]
+        [Display(Name = "First Name")]
         public string FirstName { get; set; }
-        [DisplayName("Last Name")]
+        [Required]
+        [StringLength(25, ErrorMessage = "First name cannot be longer than 25 characters")]
+        [Display(Name = "Last Name")]
         public string LastName { get; set; }
-        [DisplayName("Address")]
+        [Required]
+        [StringLength(50, ErrorMessage = "Address cannot be longer than 50 characters.")]
+        [Display(Name = "Address")]
         public string Address { get; set; }
+        // Add 'F', 'M', or 'O'.
         public char Sex { get; set; }
-        [DisplayName("Date of Birth")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
+        [Display(Name = "Date of Birth")]
         public DateTime DateOfBirth { get; set; }
 
         #endregion
