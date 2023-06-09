@@ -1,0 +1,58 @@
+﻿@model List<Question>
+@{
+        ViewData["Title"] = "Test Ciljeva";
+    }
+<h1>Test Ciljeva</h1>
+@using (Html.BeginForm())
+{
+    for (int i = 0; i < Model.Count; i++)
+    {
+        <h3>@Model[i].Text</h3>
+        @if (i == 0)
+        {
+            <div>
+                <input type="text" name="Answer[@i]" />
+            </div>
+        }
+        else if (i == 2)
+        {
+            <div>
+                <input type="text" name="Answer[@i].Answer1" placeholder="Masa (kg)" />
+            </div>
+            <div>
+                <input type="text" name="Answer[@i].Answer2" placeholder="Visina (cm)" />
+            </div>
+        }
+        else if (i == 4 || i==8)
+        {
+            @for (int j = 0; j < Model[i].Answers.Count; j++)
+            {
+                <div>
+                    <input type="checkbox" name="Answer[@i].SelectedAnswers" value="@Model[i].Answers[j]" />
+                    @Model[i].Answers[j]
+                </div>
+            }
+        }
+        else
+
+        
+        @for (int j = 0; j < Model[i].Answers.Count; j++)
+        {
+            <div>
+                @Html.RadioButton($"Answer[{i}]", Model[i].Answers[j])
+                @Model[i].Answers[j]
+            </div>
+        }
+    }
+        
+        <br />
+
+    <button type="submit">Submit</button>
+}
+
+
+
+
+
+
+
