@@ -89,7 +89,7 @@ namespace FitnessFusion.Models
                     age--;
                 }
                 String gender; 
-                if(sex == 'M' || 'm')
+                if(sex == 'M')
                     gender = "male";
                 else
                     gender = "female";

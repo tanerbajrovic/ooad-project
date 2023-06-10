@@ -24,7 +24,7 @@ namespace FitnessFusion.Models
         [StringLength(50, ErrorMessage = "Address cannot be longer than 50 characters.")]
         [Display(Name = "Address")]
         public string Address { get; set; }
-        [RegularExpression("[MmFf]", ErrorMessage = "Sex must be either 'M' / 'm' or 'F' / 'f'.")]
+        // [RegularExpression("[MF]", ErrorMessage = "Sex must be either 'M' or 'F'.")]
         public char Sex { get; set; }
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]

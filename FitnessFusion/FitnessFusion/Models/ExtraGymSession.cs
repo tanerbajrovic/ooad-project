@@ -29,7 +29,7 @@ namespace FitnessFusion.Models
         public ExtraGymSession Clone(ExtraGymSession original)
         {
             ScheduleId = original.ScheduleId;   
-            DateTime = original.DateTime;
+            StartTime = original.StartTime;
             IsComplete = false;
             BurnedCalories = original.BurnedCalories;
             Duration = original.Duration;

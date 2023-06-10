@@ -27,7 +27,7 @@ namespace FitnessFusion.Models
         public Training Clone(Training original)
         {
             ScheduleId = original.ScheduleId;
-            DateTime = original.DateTime;
+            StartTime = original.StartTime;
             IsComplete = false;
             BurnedCalories = original.BurnedCalories;
             GymProgramId = original.GymProgramId;
