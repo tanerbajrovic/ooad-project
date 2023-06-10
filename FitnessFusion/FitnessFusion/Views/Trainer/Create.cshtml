@@ -2,13 +2,14 @@
 
 @{
     ViewData["Title"] = "Create";
+    Layout = "_LayoutTrainer";
 }
 
-<h1>Create</h1>
+<h1>Create - rezultate</h1>
 
 <h4>Trainer</h4>
 <hr />
-<div class="row">
+<!--<div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -27,7 +28,7 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
-
+-->
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

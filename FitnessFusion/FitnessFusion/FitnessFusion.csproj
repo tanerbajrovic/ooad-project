@@ -6,6 +6,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\css\style2.css" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\css\style2.css" />
     <None Include="wwwroot\css\homepage.css" />
     <None Include="wwwroot\css\log-in.css" />
     <None Include="wwwroot\css\signup.css" />
