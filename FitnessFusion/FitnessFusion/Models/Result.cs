@@ -79,7 +79,7 @@ namespace FitnessFusion.Models
             List<Result> results = await _context.Result.ToListAsync();
             foreach (var result in results)
             {
-                String userID = _context.User.Find(result.UserId).ApplicationUserId;
+                String userID = _context.User.Find(result.UserId).Id;
                 int activityLevel = _context.User.Find(result.UserId).ActivityCoefficient;
                 DateTime birth = _context.Users.Find(userID).DateOfBirth;
                 Char sex = _context.Users.Find(userID).Sex;
