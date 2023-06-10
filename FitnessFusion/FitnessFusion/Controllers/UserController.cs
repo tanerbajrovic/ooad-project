@@ -19,6 +19,111 @@ namespace FitnessFusion.Controllers
             _context = context;
         }
 
+        public IActionResult TestCiljeva()
+        {
+            var questions = GetTestQuestions();
+            return View(questions);
+        }
+
+        private List<Question> GetTestQuestions()
+        {
+            // Hardcoded list of questions
+            return new List<Question>
+        {
+            new Question
+            {
+                Text = "1. Koliko imate godina?",
+                Answers = new List<string>
+                {
+                }
+            },
+                new Question
+            {
+                Text = "2. Spol",
+                Answers = new List<string>
+                {
+                    "M",
+                    "Ž",
+                }
+            },
+                    new Question
+            {
+                Text = "3. Masa i visina",
+                Answers = new List<string>
+                {
+                }
+            },
+                new Question
+            {
+                Text = "4. Koliko ste vremena spremni izdvojiti za vježbanje?",
+                Answers = new List<string>
+                {
+                    "1-3 dana sedmično",
+                    "3-5 dana sedmično",
+                    "5-7 dana sedmično",
+                }
+            },
+                    new Question
+            {
+                Text = "5. Koji je vaš cilj? (moguće selektovati više)",
+                Answers = new List<string>
+                {
+                    "Cardio",
+                    "Weight loss",
+                    "Building muscle",
+                    "Stay in shape (mild)"
+                }
+
+            },
+                     new Question
+            {
+                Text = "6. Ako ste za cilj izabrali 'Building muscle', " +
+                "da li ste posebno zainteresovani za fokus na gradnju mišića ili gradnju snage?",
+                Answers = new List<string>
+                {
+                    "Zainteresovan/a sam za programe sa naglaskom na mišićnu hipertrofiju",
+                    "Zainteresovan/a sam za programe koji maksimiziraju napredovanje u snazi",
+                    "Svejedno mi je"
+                }
+
+            },
+                     new Question
+            {
+                Text = "6. Ako ste za cilj izabrali 'Stay in shape (mild)', " +
+                "jeste li zainteresovani za aktivnosti nižeg intenziteta ili nešto dinamičniju vježbu?",
+                Answers = new List<string>
+                {
+                    "Aktivnosti niskog intenziteta",
+                    "Dinamičnije aktivnosti"
+                }
+
+            },
+                            new Question
+            {
+                Text = "8. Da li konzumirate cigarete?",
+                Answers = new List<string>
+                {
+                    "DA",
+                    "NE",
+                }
+
+            },
+                             new Question
+            {
+                Text = "9. Da li imate zdravstvene probleme? (moguće selektovati više)",
+                Answers = new List<string>
+                {
+                    "Srčani problemi",
+                    "Hronična oboljenja",
+                    "Fizički problemi",
+                    "NE",
+                }
+
+            }
+
+        };
+        }
+
         // GET: User
         /*
         public async Task<IActionResult> Index()
