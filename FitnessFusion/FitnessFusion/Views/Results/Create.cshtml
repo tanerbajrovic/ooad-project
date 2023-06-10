@@ -1,0 +1,150 @@
+﻿@model FitnessFusion.Models.Result
+
+@{
+    ViewData["Title"] = "Unos rezultata";
+    Layout = "_LayoutTrainer";
+}
+
+<h1 style="color: white;">Unos rezultata korisnikovog treninga</h1>
+
+<h4 style="color: white;">Unesite vrijednosti parametara</h4>
+<hr width="100%" color="white" />
+
+<body style="background-image: linear-gradient(to right, #252325 ,#312f33, #343238,#46454a);">
+    <div class="row" style="background-image: linear-gradient(to right, #facf89, #fad496, #fcdfae);">
+    <div class="col-md-7">
+
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <!--
+            <div class="form-group">
+                <label asp-for="UserId" class="control-label"></label>
+                <select asp-for="UserId" class ="form-control" asp-items="ViewBag.UserId"></select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="TrainerId" class="control-label"></label>
+                <select asp-for="TrainerId" class ="form-control" asp-items="ViewBag.TrainerId"></select>
+            </div>
+
+            -->
+
+            <div class="form-group">
+                <label asp-for="Calories" class="control-label"></label>
+                <input asp-for="Calories" class="form-control" value="0"/>
+                <span asp-validation-for="Calories" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="Date" class="control-label"></label>
+                <input asp-for="Date" class="form-control" />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Mass" class="control-label"></label>
+                <input asp-for="Mass" class="form-control"  />
+                <span asp-validation-for="Mass" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Height" class="control-label"></label>
+                <input asp-for="Height" class="form-control"   />
+                <span asp-validation-for="Height" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="NeckCircumference" class="control-label"></label>
+                <input asp-for="NeckCircumference" class="form-control" value="0" />
+                <span asp-validation-for="NeckCircumference" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="WaistCircumference" class="control-label"></label>
+                <input asp-for="WaistCircumference" class="form-control" value="0" />
+                <span asp-validation-for="WaistCircumference" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ArmCircumference" class="control-label"></label>
+                <input asp-for="ArmCircumference" class="form-control" value="0" />
+                <span asp-validation-for="ArmCircumference" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="HipsCircumference" class="control-label"></label>
+                <input asp-for="HipsCircumference" class="form-control" value="0" />
+                <span asp-validation-for="HipsCircumference" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="LegCircumference" class="control-label"></label>
+                <input asp-for="LegCircumference" class="form-control" value="0" />
+                <span asp-validation-for="LegCircumference" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="BenchPress" class="control-label"></label>
+                <input asp-for="BenchPress" class="form-control" value="0" />
+                <span asp-validation-for="BenchPress" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Squat" class="control-label"></label>
+                <input asp-for="Squat" class="form-control" value="0" />
+                <span asp-validation-for="Squat" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="AbsTest" class="control-label"></label>
+                <input asp-for="AbsTest" class="form-control" value="0" />
+                <span asp-validation-for="AbsTest" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="PushUps" class="control-label"></label>
+                <input asp-for="PushUps" class="form-control" value="0" />
+                <span asp-validation-for="PushUps" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="SprintRunning" class="control-label"></label>
+                <input asp-for="SprintRunning" class="form-control" value="0" />
+                <span asp-validation-for="SprintRunning" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Running" class="control-label"></label>
+                <input asp-for="Running" class="form-control" value="0" />
+                <span asp-validation-for="Running" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="VerticalJump" class="control-label"></label>
+                <input asp-for="VerticalJump" class="form-control" value="0" />
+                <span asp-validation-for="VerticalJump" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="HorizontalJump" class="control-label"></label>
+                <input asp-for="HorizontalJump" class="form-control" value="0" />
+                <span asp-validation-for="HorizontalJump" class="text-danger"></span>
+            </div>
+
+
+                <div class="form-group">
+                    <input type="submit" value="Unesi rezultate" class="btn btn-primary" />
+                </div>
+        </form>
+    </div>
+</div>
+
+<div>
+        <a style="color: white; font-size: 25px;" asp-controller="Trainer" asp-action="Index">Odustani</a>
+</div>
+
+</body>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
