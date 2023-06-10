@@ -6,6 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="images\ff-1.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="wwwroot\css\homepage.css" />
     <None Include="wwwroot\css\log-in.css" />
     <None Include="wwwroot\css\signup.css" />
