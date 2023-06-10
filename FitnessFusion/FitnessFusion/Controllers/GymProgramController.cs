@@ -7,21 +7,36 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FitnessFusion.Data;
 using FitnessFusion.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FitnessFusion.Controllers
 {
     public class GymProgramController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<User> _userManager;
 
-        public GymProgramController(ApplicationDbContext context)
+        public GymProgramController(ApplicationDbContext context, UserManager<User> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: GymProgram
         public async Task<IActionResult> Index()
         {
+            List<GymProgram> programs = await _context.GymProgram.ToListAsync();
+            foreach(var program in programs)
+            {
+                List<Rating> ratingsList = _context.Rating.Where(r => r.GymProgramId == program.Id).ToList();
+                List<double> ratingValues = new List<double>();
+                foreach(var rating in ratingsList)
+                {
+                    ratingValues.Add(rating.RatingValue);
+                }
+                program.calculateAverageRating(ratingValues);
+            }
             return View(await _context.GymProgram.ToListAsync());
         }
 
@@ -41,6 +56,18 @@ namespace FitnessFusion.Controllers
             }
 
             return View(gymProgram);
+        }
+
+        [Authorize]
+        public async Task<IActionResult> AddToUser(int programId)
+        {
+            var currentUser = await _userManager.GetUserAsync(User);
+            if (currentUser != null)
+            {
+                currentUser.GymProgramId = programId;
+                await _userManager.UpdateAsync(currentUser);
+            }
+            return RedirectToAction("Details", "GymProgram", new { id = programId });
         }
 
         // GET: GymProgram/Create
