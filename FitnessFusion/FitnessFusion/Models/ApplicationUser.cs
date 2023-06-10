@@ -17,7 +17,7 @@ namespace FitnessFusion.Models
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
         [Required]
-        [StringLength(25, ErrorMessage = "First name cannot be longer than 25 characters")]
+        [StringLength(25, ErrorMessage = "Last name cannot be longer than 25 characters")]
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
         [Required]
