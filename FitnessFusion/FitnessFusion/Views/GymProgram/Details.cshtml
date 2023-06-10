@@ -34,5 +34,7 @@
 <div>
     <a asp-action="Index">Programi Aktivnosti</a>
     @if (User.IsInRole("User"))
-    <a asp-action="AddToUser" asp-route-programId="@Model.Id">Add Program</a>
+    {
+        <a asp-action="AddToUser" asp-route-programId="@Model.Id">Add Program</a>
+    }
 </div>
