@@ -28,6 +28,11 @@
             </div>
 
             -->
+                <div class="form-group">
+                    <label asp-for="User" class="control-label"></label>
+                    <input asp-for="User.Email" class="form-control" placeholder="User's e-mail" />
+                    <span asp-validation-for="User.Email" class="text-danger"></span>
+                </div>
 
             <div class="form-group">
                 <label asp-for="Calories" class="control-label"></label>
