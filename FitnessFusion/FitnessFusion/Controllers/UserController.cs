@@ -7,9 +7,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FitnessFusion.Data;
 using FitnessFusion.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FitnessFusion.Controllers
 {
+
+    [Authorize]
     public class UserController : Controller
     {
         private readonly ApplicationDbContext _context;

@@ -20,11 +20,12 @@ namespace FitnessFusion.Controllers
         }
 
         // GET: Trainer
-        //public async Task<IActionResult> Index()
-        //{
-        //    var applicationDbContext = _context.Trainer.Include(t => t.ApplicationUser);
-        //    return View(await applicationDbContext.ToListAsync());
-        //}
+        public async Task<IActionResult> Index()
+        {
+            return View();
+           //    var applicationDbContext = _context.Trainer.Include(t => t.ApplicationUser);
+           //    return View(await applicationDbContext.ToListAsync());
+        }
 
         // GET: Trainer/Details/5
         /*
@@ -48,7 +49,7 @@ namespace FitnessFusion.Controllers
         */
 
         // GET: Trainer/Create
-        /*
+        
         public IActionResult Create()
         {
             ViewData["ApplicationUserId"] = new SelectList(_context.Set<ApplicationUser>(), "Id", "Id");
@@ -58,7 +59,7 @@ namespace FitnessFusion.Controllers
         // POST: Trainer/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+       /*[HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,ApplicationUserId,Experience")] Trainer trainer)
         {
@@ -74,10 +75,11 @@ namespace FitnessFusion.Controllers
         */
 
         // GET: Trainer/Edit/5
-        /*
+        
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null)
+            return View();
+           /* if (id == null)
             {
                 return NotFound();
             }
@@ -87,10 +89,11 @@ namespace FitnessFusion.Controllers
             {
                 return NotFound();
             }
-            ViewData["ApplicationUserId"] = new SelectList(_context.Set<ApplicationUser>(), "Id", "Id", trainer.ApplicationUserId);
-            return View(trainer);
+            */
+           // ViewData["ApplicationUserId"] = new SelectList(_context.Set<ApplicationUser>(), "Id", "Id", trainer.ApplicationUserId);
+            
         }
-        */
+        
 
         // POST: Trainer/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.

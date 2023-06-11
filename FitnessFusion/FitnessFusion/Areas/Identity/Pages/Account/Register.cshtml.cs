@@ -78,7 +78,12 @@ namespace FitnessFusion.Areas.Identity.Pages.Account
             [Display(Name = "Address")]
             public string Address { get; set; }
 
-            
+            [RegularExpression("[MF]", ErrorMessage = "Sex must be either 'M' or 'F'.")]
+            public string Sex { get; set; }
+            [DataType(DataType.Date)]
+            [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
+            [Display(Name = "Date of Birth")]
+            public DateTime DateOfBirth { get; set; }
 
         }
 
@@ -95,7 +100,7 @@ namespace FitnessFusion.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email, FirstName = Input.FirstName,
-                    LastName = Input.LastName, Address = Input.Address };
+                    LastName = Input.LastName, Address = Input.Address, DateOfBirth = Input.DateOfBirth, Sex = Convert.ToChar(Input.Sex) };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
