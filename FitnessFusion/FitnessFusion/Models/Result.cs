@@ -21,21 +21,20 @@ namespace FitnessFusion.Models
         public Trainer Trainer { get; set; }
         public int Calories { get; set; }
         public DateTime Date { get; set; }
-        [Range(0.01, double.MaxValue, ErrorMessage = "Mass must be greater than zero.")]
+        [Range(40, 160, ErrorMessage = "Mass must be between 40 and 160.")]
         public double Mass { get; set; }
-        [Range(0.01, double.MaxValue, ErrorMessage = "Height must be greater than zero.")]
+        [Range(130, 230, ErrorMessage = "Height must be between 130 and 230.")]
         public double Height { get; set; }
         [DisplayName("Neck Circumference")]
-        [Range(0.01, double.MaxValue, ErrorMessage = "Neck circumference must be greater than zero.")]
+        [Range(20, 80, ErrorMessage = "Neck circumference must be between 20 and 80.")]
         public double NeckCircumference { get; set; }
         [DisplayName("Waist Circumference")]
-        [Range(0.01, double.MaxValue, ErrorMessage = "Waist circumference must be greater than zero.")]
+        [Range(40, 130, ErrorMessage = "Waist circumference must be between 40 and 130.")]
         public double WaistCircumference { get; set; }
         [DisplayName("Arm Circumference")]
-        [Range(0.01, double.MaxValue, ErrorMessage = "Arm circumference must be greater than zero.")]
         public double ArmCircumference { get; set; }
         [DisplayName("Hips Circumference")]
-        [Range(0.01, double.MaxValue, ErrorMessage = "Hips circumference must be greater than zero.")]
+        [Range(40, 130, ErrorMessage = "Hips circumference must be between 40 and 130.")]
         public double HipsCircumference { get; set; }
         [DisplayName("Leg Circumference")]
         [Range(0.01, double.MaxValue, ErrorMessage = "Leg circumference must be greater than zero.")]
