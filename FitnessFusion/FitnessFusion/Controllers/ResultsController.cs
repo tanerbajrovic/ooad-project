@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FitnessFusion.Data;
 using FitnessFusion.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FitnessFusion.Controllers
 {
@@ -47,6 +48,7 @@ namespace FitnessFusion.Controllers
         }
 
         // GET: Results/Create
+        [Authorize(Roles="Trainer")]
         public IActionResult Create()
         {
             ViewData["TrainerId"] = new SelectList(_context.Trainer, "Id", "Id");

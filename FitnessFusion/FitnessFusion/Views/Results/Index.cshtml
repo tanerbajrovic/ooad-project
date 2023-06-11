@@ -4,140 +4,165 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+    <head>
+    <style data-tag="reset-style-sheet">
+        html {
+            line-height: 1.15;
+        }
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.User)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Trainer)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Calories)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Date)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Mass)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Height)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NeckCircumference)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.WaistCircumference)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ArmCircumference)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.HipsCircumference)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LegCircumference)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.BenchPress)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Squat)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AbsTest)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PushUps)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SprintRunning)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Running)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.VerticalJump)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.HorizontalJump)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.User.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Trainer.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Calories)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Date)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Mass)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Height)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NeckCircumference)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.WaistCircumference)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ArmCircumference)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HipsCircumference)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LegCircumference)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BenchPress)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Squat)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AbsTest)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PushUps)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SprintRunning)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Running)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.VerticalJump)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HorizontalJump)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+        body {
+            margin: 0;
+        }
+
+        * {
+            box-sizing: border-box;
+            border-width: 0;
+            border-style: solid;
+        }
+
+        p, li, ul, pre, div, h1, h2, h3, h4, h5, h6, figure, blockquote, figcaption {
+            margin: 0;
+            padding: 0;
+        }
+
+        button {
+            background-color: transparent;
+        }
+
+        button, input, optgroup, select, textarea {
+            font-family: inherit;
+            font-size: 100%;
+            line-height: 1.15;
+            margin: 0;
+        }
+
+        button, select {
+            text-transform: none;
+        }
+
+        button, [type="button"], [type="reset"], [type="submit"] {
+            -webkit-appearance: button;
+        }
+
+            button::-moz-focus-inner, [type="button"]::-moz-focus-inner, [type="reset"]::-moz-focus-inner, [type="submit"]::-moz-focus-inner {
+                border-style: none;
+                padding: 0;
+            }
+
+            button:-moz-focus, [type="button"]:-moz-focus, [type="reset"]:-moz-focus, [type="submit"]:-moz-focus {
+                outline: 1px dotted ButtonText;
+            }
+
+        a {
+            color: inherit;
+            text-decoration: inherit;
+        }
+
+        input {
+            padding: 2px 4px;
+        }
+
+        img {
+            display: block;
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+    </style>
+    <style data-tag="default-style-sheet">
+        html {
+            font-family: Inter;
+            font-size: 16px;
+        }
+
+        body {
+            font-weight: 400;
+            font-style: normal;
+            text-decoration: none;
+            text-transform: none;
+            letter-spacing: normal;
+            line-height: 1.15;
+            background-color: #000000;
+        }
+    </style>
+  
+    </head>
+    <body>
+        <div>
+            <link href="~/css/result.css" rel="stylesheet" />
+            <link rel="stylesheet" href="~/css/style4.css">
+
+
+        <link href="~/css/circle.css" rel="stylesheet" />
+
+        <div class="flex-wrapper">
+            <div class="single-chart">
+                <svg viewBox="0 0 36 36" class="circular-chart orange">
+                    <path class="circle-bg"
+                          d="M18 2.0845
+              a 15.9155 15.9155 0 0 1 0 31.831
+              a 15.9155 15.9155 0 0 1 0 -31.831" />
+                    <path class="circle"
+                          stroke-dasharray="30, 100"
+                          d="M18 2.0845
+              a 15.9155 15.9155 0 0 1 0 31.831
+              a 15.9155 15.9155 0 0 1 0 -31.831" />
+                    <text x="18" y="20.35" class="percentage">
+                       <!--TODO ovdje value bodyFatPercentage-->
+                        %
+                    </text>
+                </svg>
+                </br></br></br></br>
+                <span style="color:white;">@Html.DisplayNameFor(model => model.bodyFatPercentage)</span>
+            </div>
+
+
+        </div>
+
+        <div id="box2" class="result-container4">
+            <span style="color:#FFFFFF" class="result-text">
+
+                </br></br>
+                @Html.DisplayNameFor(model => model.BenchPress):
+                
+                </br></br>
+                @Html.DisplayNameFor(model => model.Squat):
+                
+                </br></br>
+                @Html.DisplayNameFor(model => model.AbsTest):
+                
+                </br></br>
+                @Html.DisplayNameFor(model => model.PushUps):
+                
+                </br></br>
+                @Html.DisplayNameFor(model => model.SprintRunning):
+                
+                </br></br>
+                @Html.DisplayNameFor(model => model.Running):
+                
+                </br></br>
+                @Html.DisplayNameFor(model => model.VerticalJump):
+                
+                </br></br>
+                @Html.DisplayNameFor(model => model.HorizontalJump):
+                
+
+                </br></br></br></br>
+                @Html.DisplayNameFor(model => model.Mass):
+                
+                </br></br>
+                @Html.DisplayNameFor(model => model.Calories):
+                
+                </br></br>
+                @Html.DisplayNameFor(model => model.BMI):
+                
+                </br></br>
+                @Html.DisplayNameFor(model => model.BMR):  
+                
+                </br></br>
+
+            </span>
+        </div>
+        </div>
+    </body>
