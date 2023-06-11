@@ -86,15 +86,7 @@ namespace FitnessFusion.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
-                    if (User.IsInRole("User"))
-                    {
-                        return RedirectToAction("Index", "User");
-                    }
-                    else 
-                    {
-                        return RedirectToAction("Index", "Trainer");
-                    }
-                    
+                    return LocalRedirect(returnUrl);
                 }
                 if (result.RequiresTwoFactor)
                 {
