@@ -148,6 +148,7 @@ namespace FitnessFusion.Areas.Identity.Pages.Account
                 user.FirstName = Input.FirstName;
                 user.LastName = Input.LastName;
                 user.Email = Input.Email;
+                user.Sex = Convert.ToChar(Input.Sex);
                 user.Address = Input.Address;
                 user.EmailConfirmed = true;
                 user.ActivityCoefficient = 0;
@@ -173,6 +174,7 @@ namespace FitnessFusion.Areas.Identity.Pages.Account
                 user.FirstName = Input.FirstName;
                 user.LastName = Input.LastName;
                 user.Email = Input.Email;
+                user.Sex = Convert.ToChar(Input.Sex);
                 user.Address = Input.Address;
                 user.EmailConfirmed = true;
 
