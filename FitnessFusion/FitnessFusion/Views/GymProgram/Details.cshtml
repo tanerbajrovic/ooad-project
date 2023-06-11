@@ -40,7 +40,7 @@
     @if (User.IsInRole("User"))
     {
         <form asp-action="AddToUser" asp-route-id="@Model.Id">
-            <button type="submit" class="btn btn-custom">Add Program</button>
+            <button type="submit" class="btn btn-custom" style="margin-top: 10px;">Add Program</button>
         </form>
     }
 </div>
