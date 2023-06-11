@@ -35,6 +35,7 @@ namespace FitnessFusion.Controllers
             return View(programs);
         }
 
+        [Authorize(Roles = "User")]
         public async Task<IActionResult> AllPrograms()
         { 
             var programs = await _context.GymProgram.ToListAsync();
