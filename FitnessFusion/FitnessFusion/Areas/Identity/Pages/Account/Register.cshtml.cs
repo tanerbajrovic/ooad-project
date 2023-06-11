@@ -127,17 +127,26 @@ namespace FitnessFusion.Areas.Identity.Pages.Account
                     await _userManager.AddToRoleAsync(user, userSelectedRole);
                     await _signInManager.SignInAsync(user, isPersistent: false);
 
-                    // Redirecting to different pages depending on role
-                    var redirectPagePath = "Homes/Index";
-                    if (User.IsInRole("User"))
+                    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                    code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+                    var callbackUrl = Url.Page(
+                        "/Account/ConfirmEmail",
+                        pageHandler: null,
+                        values: new { area = "Identity", userId = user.Id, code = code, returnUrl = returnUrl },
+                        protocol: Request.Scheme);
+
+                    await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
+                        $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+
+                    if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {
-                        redirectPagePath = "User/Index";
+                        return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });
                     }
-                    if (User.IsInRole("Trainer"))
+                    else
                     {
-                        redirectPagePath = "Trainer/Index";
+                        await _signInManager.SignInAsync(user, isPersistent: false);
+                        return LocalRedirect(returnUrl);
                     }
-                    return Redirect(redirectPagePath);
                 }
                 foreach (var error in result.Errors)
                 {
