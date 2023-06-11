@@ -1,0 +1,107 @@
+.result-container {
+  width: 100%;
+  display: flex;
+  overflow: auto;
+  min-height: 100vh;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+.result-container1 {
+  flex: 0 0 auto;
+  width: 200px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+.result-container2 {
+  flex: 0 0 auto;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.result-container3 {
+    width: 600px;
+    height: 500px;
+    display: flex;
+    background-size: cover;
+    background-image: url('https://res.cloudinary.com/dcspg/image/upload/c_fit,f_auto,q_auto,w_372/v1/images/color/C74056');
+    background-position: center;
+}
+.result-container4 {
+  flex: 0 0 auto;
+  width: 200px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+@media(max-width: 1600px) {
+  .result-container {
+    background-size: cover;
+    background-image: url("public/external/rectangle12588-u9gs-1500w.png");
+  }
+  .result-container2 {
+    width: 1443px;
+    height: 552px;
+    position: relative;
+  }
+  .result-container3 {
+    top: 0px;
+    left: 0px;
+    width: 617px;
+    height: 495px;
+    position: absolute;
+    align-self: flex-start;
+  }
+  .result-container4 {
+    top: 21px;
+    left: 629px;
+    width: 769px;
+    height: 451px;
+    position: absolute;
+    background-color: var(--dl-color-gray-black);
+  }
+  .result-text {
+    top: 39px;
+    left: 69px;
+    position: absolute;
+    align-self: flex-start;
+  }
+}
+@media(max-width: 1200px) {
+  .result-container {
+    gap: 0;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  .result-container1 {
+    width: 100%;
+    height: 764px;
+    padding: var(--dl-space-space-unit);
+    align-self: center;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  .result-container2 {
+    height: 100%;
+    align-self: center;
+    align-items: flex-start;
+    justify-content: center;
+  }
+  .result-container3 {
+    width: 511px;
+    height: 482px;
+  }
+  .result-container4 {
+    width: 50%;
+    height: 100%;
+    margin-left: var(--dl-space-space-unit);
+  }
+  .result-text {
+    font-size: 35px;
+  }
+}

@@ -71,36 +71,28 @@ namespace FitnessFusion.Models
 
         #region Methods
 
-        /*
-            U odgovarajucem kontroleru Result klase, ovisno kako bude implementiran, bice potrebno dodati kod za postavljanje atributa
-            koje racuna API. U slucaju da se budu prikazivali svi rezultati na jednoj stranici i da imamo neki kao 'Index' kontroler,
-            kod koji bi sve potrebne API atribute postavio izgledao bi otprilike ovako:
-
-            List<Result> results = await _context.Result.ToListAsync();
-            foreach (var result in results)
+         public String ImportantResultInfo()
+        {
+            return "Mass: " + Mass + "      Calories: " + Calories;
+        }
+        public String ResultInfo()
+        {
+            String resultInfo="";
+            //check if there are strenght attributesn- CHECK IF NULL OR 0 
+          if(BenchPress!=null)
             {
-                String userID = _context.User.Find(result.UserId).Id;
-                int activityLevel = _context.User.Find(result.UserId).ActivityCoefficient;
-                DateTime birth = _context.Users.Find(userID).DateOfBirth;
-                Char sex = _context.Users.Find(userID).Sex;
-                int age = DateTime.Today.Year - birth.Year;             
-                if (DateTime.Today < dateOfBirth.AddYears(age))
-                {
-                    age--;
-                }
-                String gender; 
-                if(sex == 'M')
-                    gender = "male";
-                else
-                    gender = "female";
-                // ovaj dio do sada sa dobavljanjem age, gender i activity coeff iz baze se moze odvojiti u neku privatnu metodu kontrolera
-                await result.calculateBMI(age, result.Mass, result.Height);
-                await result.calculateBodyFatPercentage(age, gender, result.Mass, result.Height, result.NeckCircumference, result.WaistCircumference, result.HipsCircumference);
-                await result.calculateBMR(age, gender, result.Height, result.Mass, activityLevel);
+                resultInfo = "Bench Press: " + BenchPress + "\n" + "Squat: " + Squat + "\n" + "Abs test: " + AbsTest + "\n"
+                    + "PushUps: " + PushUps + "\n";
             }
-            return View(await _context.Result.ToListAsync());
+          //check if there are cardio parameters
+          if(SprintRunning!=null)
+            {
+                resultInfo += "Sprint running (200m): " + SprintRunning + "\n" + "Running (5k): " + Running + "\n"
+                    + "Vertical jump: " + VerticalJump + "\n" + "Horizontal jump: " + HorizontalJump + "\n";
+            }
+            return resultInfo;
+        }
 
-        */
 
         public async Task calculateBMI(int age, double weight, double height)
         {
