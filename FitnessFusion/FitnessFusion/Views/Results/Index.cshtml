@@ -1,0 +1,143 @@
+﻿@model IEnumerable<FitnessFusion.Models.Result>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.User)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Trainer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Calories)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Mass)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Height)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NeckCircumference)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WaistCircumference)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ArmCircumference)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HipsCircumference)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LegCircumference)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BenchPress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Squat)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AbsTest)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PushUps)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SprintRunning)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Running)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VerticalJump)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HorizontalJump)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Trainer.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Calories)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mass)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Height)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NeckCircumference)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WaistCircumference)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ArmCircumference)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HipsCircumference)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LegCircumference)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BenchPress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Squat)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AbsTest)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PushUps)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SprintRunning)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Running)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VerticalJump)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HorizontalJump)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

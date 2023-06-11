@@ -128,13 +128,14 @@ namespace FitnessFusion.Controllers
         }
 
         // GET: User
-        /*
+        
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.User.Include(u => u.ApplicationUser).Include(u => u.GymProgram);
-            return View(await applicationDbContext.ToListAsync());
+            return View();
+            //var applicationDbContext = _context.User.Include(u => u.ApplicationUser).Include(u => u.GymProgram);
+            //return View(await applicationDbContext.ToListAsync());
         }
-        */
+        
 
         // GET: User/Details/5
         /*

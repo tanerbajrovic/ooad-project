@@ -14,9 +14,11 @@
 
   <ItemGroup>
     <Content Remove="wwwroot\css\style2.css" />
+    <Content Remove="wwwroot\css\style3.css" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\css\style3.css" />
     <None Include="wwwroot\css\style2.css" />
     <None Include="wwwroot\css\homepage.css" />
     <None Include="wwwroot\css\log-in.css" />

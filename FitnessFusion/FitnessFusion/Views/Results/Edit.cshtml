@@ -1,0 +1,124 @@
+﻿@model FitnessFusion.Models.Result
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Result</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="UserId" class="control-label"></label>
+                <select asp-for="UserId" class="form-control" asp-items="ViewBag.UserId"></select>
+                <span asp-validation-for="UserId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TrainerId" class="control-label"></label>
+                <select asp-for="TrainerId" class="form-control" asp-items="ViewBag.TrainerId"></select>
+                <span asp-validation-for="TrainerId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Calories" class="control-label"></label>
+                <input asp-for="Calories" class="form-control" />
+                <span asp-validation-for="Calories" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Date" class="control-label"></label>
+                <input asp-for="Date" class="form-control" />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Mass" class="control-label"></label>
+                <input asp-for="Mass" class="form-control" />
+                <span asp-validation-for="Mass" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Height" class="control-label"></label>
+                <input asp-for="Height" class="form-control" />
+                <span asp-validation-for="Height" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NeckCircumference" class="control-label"></label>
+                <input asp-for="NeckCircumference" class="form-control" />
+                <span asp-validation-for="NeckCircumference" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WaistCircumference" class="control-label"></label>
+                <input asp-for="WaistCircumference" class="form-control" />
+                <span asp-validation-for="WaistCircumference" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ArmCircumference" class="control-label"></label>
+                <input asp-for="ArmCircumference" class="form-control" />
+                <span asp-validation-for="ArmCircumference" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HipsCircumference" class="control-label"></label>
+                <input asp-for="HipsCircumference" class="form-control" />
+                <span asp-validation-for="HipsCircumference" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LegCircumference" class="control-label"></label>
+                <input asp-for="LegCircumference" class="form-control" />
+                <span asp-validation-for="LegCircumference" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BenchPress" class="control-label"></label>
+                <input asp-for="BenchPress" class="form-control" />
+                <span asp-validation-for="BenchPress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Squat" class="control-label"></label>
+                <input asp-for="Squat" class="form-control" />
+                <span asp-validation-for="Squat" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AbsTest" class="control-label"></label>
+                <input asp-for="AbsTest" class="form-control" />
+                <span asp-validation-for="AbsTest" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PushUps" class="control-label"></label>
+                <input asp-for="PushUps" class="form-control" />
+                <span asp-validation-for="PushUps" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SprintRunning" class="control-label"></label>
+                <input asp-for="SprintRunning" class="form-control" />
+                <span asp-validation-for="SprintRunning" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Running" class="control-label"></label>
+                <input asp-for="Running" class="form-control" />
+                <span asp-validation-for="Running" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VerticalJump" class="control-label"></label>
+                <input asp-for="VerticalJump" class="form-control" />
+                <span asp-validation-for="VerticalJump" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HorizontalJump" class="control-label"></label>
+                <input asp-for="HorizontalJump" class="form-control" />
+                <span asp-validation-for="HorizontalJump" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

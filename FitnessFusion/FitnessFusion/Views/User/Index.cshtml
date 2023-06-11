@@ -1,41 +1,58 @@
 ﻿@model IEnumerable<FitnessFusion.Models.User>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Dasboard";
+    Layout = "_LayoutUser";
 }
 
-<h1>Index</h1>
+<h1 style="color: white;">Welcome</h1>
+<body style="background-image: linear-gradient(to right, #252325 ,#312f33, #343238,#46454a);">
+    <div>
+        <link href="~/css/style3.css" rel="stylesheet" />
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.GymProgram)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ActivityCoefficient)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.GymProgram.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ActivityCoefficient)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+
+
+        <div class="home-opcije1">
+            
+            <div class="home-raspored-box">
+                
+                <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="TestCiljeva">
+                    <svg viewBox="0 0 1024 1024" class=" home-rasporedikonica" >
+                    <path d="M320 384h128v128h-128zM512 384h128v128h-128zM704 384h128v128h-128zM128 768h128v128h-128zM320 768h128v128h-128zM512 768h128v128h-128zM320 576h128v128h-128zM512 576h128v128h-128zM704 576h128v128h-128zM128 576h128v128h-128zM832 0v64h-128v-64h-448v64h-128v-64h-128v1024h960v-1024h-128zM896 960h-832v-704h832v704z"></path>
+                    </svg>
+                </a>
+                <span class="home-raspored" style="color: white;">Raspored</span>
+
+                
+                <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="TestCiljeva">
+                    <svg viewBox="0 0 1024 1024" class="home-icon2">
+                    <path d="M384 512q0-36 25-61t61-25 60 25 24 61-24 61-60 25-61-25-25-61zM470 640q52 0 90-38t38-90-38-90-90-38-90 38-38 90 38 90 90 38zM192 384q22 0 22-22 0-20-22-20t-22 20q0 22 22 22zM480 256h458v172h-172q-20 0-33 14t-11 34q6 46-2 88-16 80-78 136t-144 66q-4 0-14 1t-14 1q-106 0-181-75t-75-181v-12q0-14 4-34-16 4-26 4-44 0-75-32t-31-76 31-75 75-31q36 0 64 21t38 53q78-74 186-74z"></path>
+                    </svg>
+                </a>
+                <span class="home-raspored1" style="color: white;">Programi aktivnosti</span>
+            </div>
+
+
+
+
+            <div class="home-raspored-box1">
+                <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="TestCiljeva">
+                    <svg viewBox="0 0 1024 1024" class="home-icon4">
+                    <path d="M128 896h896v128h-1024v-1024h128zM288 832c-53.020 0-96-42.98-96-96s42.98-96 96-96c2.828 0 5.622 0.148 8.388 0.386l103.192-171.986c-9.84-15.070-15.58-33.062-15.58-52.402 0-53.020 42.98-96 96-96s96 42.98 96 96c0 19.342-5.74 37.332-15.58 52.402l103.192 171.986c2.766-0.238 5.56-0.386 8.388-0.386 2.136 0 4.248 0.094 6.35 0.23l170.356-298.122c-10.536-15.408-16.706-34.036-16.706-54.11 0-53.020 42.98-96 96-96s96 42.98 96 96c0 53.020-42.98 96-96 96-2.14 0-4.248-0.094-6.35-0.232l-170.356 298.124c10.536 15.406 16.706 34.036 16.706 54.11 0 53.020-42.98 96-96 96s-96-42.98-96-96c0-19.34 5.74-37.332 15.578-52.402l-103.19-171.984c-2.766 0.238-5.56 0.386-8.388 0.386s-5.622-0.146-8.388-0.386l-103.192 171.986c9.84 15.068 15.58 33.060 15.58 52.4 0 53.020-42.98 96-96 96z"></path>
+                    </svg>
+                </a>
+                <span class="home-raspored2" style="color: white;">Vaši rezultati</span>
+                
+                <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="TestCiljeva">
+                    <svg viewBox="0 0 1024 1024" class="home-icon6">
+                    <path d="M585.143 804.571h365.714v-73.143h-365.714v73.143zM365.714 512h585.143v-73.143h-585.143v73.143zM731.429 219.429h219.429v-73.143h-219.429v73.143zM1024 694.857v146.286c0 20-16.571 36.571-36.571 36.571h-950.857c-20 0-36.571-16.571-36.571-36.571v-146.286c0-20 16.571-36.571 36.571-36.571h950.857c20 0 36.571 16.571 36.571 36.571zM1024 402.286v146.286c0 20-16.571 36.571-36.571 36.571h-950.857c-20 0-36.571-16.571-36.571-36.571v-146.286c0-20 16.571-36.571 36.571-36.571h950.857c20 0 36.571 16.571 36.571 36.571zM1024 109.714v146.286c0 20-16.571 36.571-36.571 36.571h-950.857c-20 0-36.571-16.571-36.571-36.571v-146.286c0-20 16.571-36.571 36.571-36.571h950.857c20 0 36.571 16.571 36.571 36.571z"></path>
+                    </svg>
+                </a>
+                <span class="home-raspored3" style="color: white;">Test ciljeva</span>
+            
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+
