@@ -94,6 +94,7 @@ namespace FitnessFusion.Controllers
         private async Task<List<GymProgram>> processAnswers(List<Question> answers)
         {
             List<GymProgram> programs = await _context.GymProgram.ToListAsync();
+            /*
             if (int.Parse(answers[0].SubmittedAnswer[0]) > 60)
             {
                 programs.RemoveAll(program => program.Type == GymProgramType.Strength);
@@ -199,10 +200,11 @@ namespace FitnessFusion.Controllers
                 programs.RemoveAll(program => program.Type == GymProgramType.Strength);
                 programs.RemoveAll(program => program.Type == GymProgramType.Endurance && program.Name != "Zumba");
             }
+            */
             return programs;
         } 
 
-        /*
+        
         // GET: GymProgram/Details/5
         public async Task<IActionResult> Details(int? id)
     {
