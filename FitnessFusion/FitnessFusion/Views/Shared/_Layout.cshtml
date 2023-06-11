@@ -28,18 +28,21 @@
                         </li>
                         @if (User.Identity.IsAuthenticated)
                         {
-                            // Treba dodati if za rolu koji ce pravilno pozicionirati na dasboard
-                             // za usera
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Index">Dasboard</a>
-                            </li>
+                           
+                            @if (User.IsInRole("User"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Index">Dasboard</a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Trainer" asp-action="Index">Dasboard</a>
+                                </li>
+                            }
 
-                            //za trenera
-                            <!--
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Trainer" asp-action="Index">Dasboard</a>
-                            </li>
-                            -->
+                        
                         }
                     </ul>
                     <partial name="_LoginPartial" />
