@@ -8,7 +8,7 @@ using System.Diagnostics.Eventing.Reader;
 
 namespace FitnessFusion.Models
 {
-    public class Schedule
+    public class Schedule : ISchedule
     {
         #region Properties
 
@@ -39,7 +39,11 @@ namespace FitnessFusion.Models
 
         #region Methods
 
-        // TODO
+        public ISchedule AddGymSession(GymSession session)
+        {
+            throw new NotImplementedException();
+
+        }
 
         #endregion
     }
