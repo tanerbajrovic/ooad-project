@@ -3,13 +3,42 @@
 @{
     ViewData["Title"] = "Register";
 }
+<style>
+    body {
+        background-color: #1B1D1F;
+    }
 
-<h1>@ViewData["Title"]</h1>
+    label,
+    input,
+    span,
+    a {
+        color: #ffffff;
+    }
+
+    .btn-primary {
+        background-color: #ff4300;
+        color: #ffffff;
+        width: 100%
+    }
+
+    .account-heading {
+        color: #ff4300;
+        font-size: 40px;
+        margin-bottom: 20px;
+    }
+
+    .account-heading2 {
+        color: #ff4300;
+        font-size: 20px;
+    }
+    </style>
+
+<h1 class="account-heading">@ViewData["Title"]</h1>
 
 <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
     <div class="row">
         <div class="col">
-            <h4>Create your new FitnessFusion account.</h4>
+            <h4 class="account-heading2">Create your new FitnessFusion account.</h4>
             <hr />
             <div asp-validation-summary="All" class="text-danger"></div>
             <div class="form-group">
