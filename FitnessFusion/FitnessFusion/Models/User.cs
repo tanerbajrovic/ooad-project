@@ -10,7 +10,7 @@ namespace FitnessFusion.Models
         #region Properties
 
         [ForeignKey("GymProgram")]
-        public int GymProgramId { get; set; }
+        public int? GymProgramId { get; set; }
         public GymProgram GymProgram { get; set; }
         [NotMapped]
         [Display(Name = "Health Issues")]
