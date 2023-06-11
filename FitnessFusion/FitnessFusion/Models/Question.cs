@@ -6,6 +6,7 @@ namespace FitnessFusion.Models
     {
         public string Text { get; set; }
         public List<string> Answers { get; set; }
-        public List<string> SubmittedAnswer { get; set; }  
+        public List<string> SubmittedAnswer { get; set; }
+        public Question() { }
     }
 }

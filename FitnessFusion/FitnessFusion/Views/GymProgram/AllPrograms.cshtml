@@ -1,0 +1,67 @@
+﻿@model IEnumerable<FitnessFusion.Models.GymProgram>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 style="color: #ff4300;">Programi Aktivnosti</h1>
+
+<style>
+    body {
+        background-color: #1B1D1F;
+    }
+
+    .table td,
+    .table th {
+        color: #ffffff;
+    }
+
+    .btn-custom {
+        background-color: #ff4300;
+        color: #ffffff;
+    }
+</style>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Overview)
+            </th>
+            <th>
+                Average Rating
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Type, "GymProgramType")
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Overview)
+                </td>
+                <td>
+                    @string.Format("{0:N2}", item.averageRating)
+                </td>
+                <td>
+                    <form asp-action="Details" asp-route-id="@item.Id">
+                        <button type="submit" class="btn btn-custom">Pregled detalja</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using System.ComponentModel;
+using FitnessFusion.Data;
 
 namespace FitnessFusion.Areas.Identity.Pages.Account
 {
@@ -25,17 +26,20 @@ namespace FitnessFusion.Areas.Identity.Pages.Account
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        private readonly ApplicationDbContext _context;
 
         public RegisterModel(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            ApplicationDbContext applicationDbContext)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            _context = applicationDbContext;
         }
 
         [BindProperty]
@@ -105,14 +109,8 @@ namespace FitnessFusion.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { 
-                    UserName = Input.Email, 
-                    Email = Input.Email, 
-                    FirstName = Input.FirstName,
-                    LastName = Input.LastName, 
-                    Address = Input.Address, 
-                    DateOfBirth = Input.DateOfBirth, 
-                    Sex = Convert.ToChar(Input.Sex) };
+                ApplicationUser user = Input.SelectedRole.Equals("User") ? CreateUser() : CreateTrainer();
+
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
@@ -124,29 +122,12 @@ namespace FitnessFusion.Areas.Identity.Pages.Account
                     {
                         userSelectedRole = "Trainer";
                     }
+
                     await _userManager.AddToRoleAsync(user, userSelectedRole);
                     await _signInManager.SignInAsync(user, isPersistent: false);
 
-                    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                    code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-                    var callbackUrl = Url.Page(
-                        "/Account/ConfirmEmail",
-                        pageHandler: null,
-                        values: new { area = "Identity", userId = user.Id, code = code, returnUrl = returnUrl },
-                        protocol: Request.Scheme);
-
-                    await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                        $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
-
-                    if (_userManager.Options.SignIn.RequireConfirmedAccount)
-                    {
-                        return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });
-                    }
-                    else
-                    {
-                        await _signInManager.SignInAsync(user, isPersistent: false);
-                        return LocalRedirect(returnUrl);
-                    }
+                    return RedirectToPage("Home/Index");
+                    
                 }
                 foreach (var error in result.Errors)
                 {
@@ -160,16 +141,51 @@ namespace FitnessFusion.Areas.Identity.Pages.Account
 
         private User CreateUser()
         {
-            //try
-            //{
-            //    return Activator.CreateInstance<User>();
-            //}
-            throw new System.NotImplementedException();
+            try
+            {
+                var user = Activator.CreateInstance<User>();
+                user.UserName = Input.Email;
+                user.FirstName = Input.FirstName;
+                user.LastName = Input.LastName;
+                user.Email = Input.Email;
+                user.Sex = Convert.ToChar(Input.Sex);
+                user.Address = Input.Address;
+                user.EmailConfirmed = true;
+                user.ActivityCoefficient = 0;
+                user.GymProgramId = null;
+
+                return user;
+            }
+            catch
+            {
+                throw new InvalidOperationException($"Can't create an instance of '{nameof(ApplicationUser)}'. " +
+                    $"Ensure that '{nameof(ApplicationUser)}' is not an abstract class and has a parameterless constructor, or alternatively " +
+                    $"override the register page in /Areas/Identity/Pages/Account/Register.cshtml");
+            }
+
         }
 
         private Trainer CreateTrainer()
         {
-            throw new System.NotImplementedException();
+            try
+            {
+                var user = Activator.CreateInstance<Trainer>();
+                user.UserName = Input.Email;
+                user.FirstName = Input.FirstName;
+                user.LastName = Input.LastName;
+                user.Email = Input.Email;
+                user.Sex = Convert.ToChar(Input.Sex);
+                user.Address = Input.Address;
+                user.EmailConfirmed = true;
+
+                return user;
+            }
+            catch
+            {
+                throw new InvalidOperationException($"Can't create an instance of '{nameof(ApplicationUser)}'. " +
+                    $"Ensure that '{nameof(ApplicationUser)}' is not an abstract class and has a parameterless constructor, or alternatively " +
+                    $"override the register page in /Areas/Identity/Pages/Account/Register.cshtml");
+            }
         }
     }
 }

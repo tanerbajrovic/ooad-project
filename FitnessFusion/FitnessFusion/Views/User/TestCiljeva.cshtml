@@ -1,7 +1,8 @@
 ﻿@model List<Question>
 @{
-        ViewData["Title"] = "Test Ciljeva";
-    }
+    ViewData["Title"] = "Test Ciljeva";
+}
+
 <style>
     body {
         background-color: #1B1D1F;
@@ -29,52 +30,77 @@
         color: #ffffff;
     }
 </style>
+
 <h1 style="color: #ff4300;">TEST CILJEVA</h1>
-< br/>
-@using (Html.BeginForm("Index", "GymProgram", FormMethod.Post))
+<br />
+
+@using (Html.BeginForm("Index", "GymProgram", FormMethod.Post, new { @id = "myForm" }))
 {
     for (int i = 0; i < Model.Count; i++)
     {
         <h3 class="question-text">@Model[i].Text</h3>
+
         @if (i == 0)
         {
             <div class="answer">
-                <input type="text" name="Model[@i].SubmittedAnswer[0]" />
+                <input type="text" name="Model[0].SubmittedAnswer[0]" />
             </div>
         }
         else if (i == 2)
         {
             <div class="answer">
-                <input type="text" name="Model[@i].SubmittedAnswer[0]" placeholder="Masa (kg)" />
+                <input type="text" name="Model[2].SubmittedAnswer[0]" placeholder="Masa (kg)" />
             </div>
             <div class="answer">
-                <input type="text" name="Model[@i].SubmittedAnswer[1]" placeholder="Visina (cm)" />
+                <input type="text" name="Model[2].SubmittedAnswer[1]" placeholder="Visina (cm)" />
             </div>
         }
-        else if (i == 4 || i==8)
+        else if (i == 4 || i == 8)
         {
             @for (int j = 0; j < Model[i].Answers.Count; j++)
             {
                 <div class="answer">
-                    <input type="checkbox" name="Answer[@i].SubmittedAnswer[j]" value="@Model[i].Answers[j]" />
+                    <input type="checkbox" name="Model[@i].SubmittedAnswer[@j]" value="@Model[i].Answers[j]" />
                     @Model[i].Answers[j]
                 </div>
             }
         }
         else
-
-        
-        @for (int j = 0; j < Model[i].Answers.Count; j++)
         {
-            <div class="answer">
-                @Html.RadioButton($"Model[{i}].SubmittedAnswer[0]", Model[i].Answers[j])
-                @Model[i].Answers[j]
-            </div>
+            @for (int j = 0; j < Model[i].Answers.Count; j++)
+            {
+                <div class="answer">
+                    @Html.RadioButton($"Model[{i}].SubmittedAnswer[0]", Model[i].Answers[j])
+                    @Model[i].Answers[j]
+                </div>
+            }
         }
         <br />
     }
-        
-        <br />
+
+    <br />
 
     <button type="submit" class="submit-button">Submit</button>
 }
+
+<script>
+    document.getElementById('myForm').addEventListener('submit', function () {
+        var answers = document.querySelectorAll('input[type="text"], input[type="checkbox"]:checked, input[type="radio"]:checked');
+        var formData = new FormData();
+
+        answers.forEach(function (answer) {
+            formData.append(answer.name, answer.value);
+        });
+
+        fetch('@Url.Action("Index", "GymProgram")', {
+            method: 'POST',
+            body: formData
+        }).then(function (response) {
+            // Handle the response if needed
+            // For example, you can redirect to another page:
+            // window.location.href = '@Url.Action("Result", "GymProgram")';
+        }).catch(function (error) {
+            console.error(error);
+        });
+    });
+</script>
