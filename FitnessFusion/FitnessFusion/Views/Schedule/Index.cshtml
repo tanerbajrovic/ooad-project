@@ -1,53 +1,120 @@
 ﻿@model IEnumerable<FitnessFusion.Models.Schedule>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Raspored";
+    Layout = "_LayoutUser";
 }
 
-<h1>Index</h1>
+<h1 style="color: white;">Raspored aktivnosti</h1>
+<body style="background-image: linear-gradient(to right ,#312f33, #343238,#46454a);">
+    <link href="~/css/style5.css" rel="stylesheet" />
 
-<p>
+    <div class="container">
+
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-center mb-5">
+                <h2 style="color: white;" class="heading-section">Ovosedmični raspored aktivnosti</h2>
+            </div>
+        </div>
+
+        <div class="calendar"></div>
+
+        <button class="custom-btn btn-7"><span> Dodaj Termin</span></button>
+        <button class="custom-btn btn-7"><span> Obriši termin</span></button>
+        <button class="custom-btn btn-7"><span> Ažuriraj termin</span></button>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-wrap">
+                    <table class="table">
+
+
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Ponedjeljak</th>
+                                <th>Utorak</th>
+                                <th>Srijeda</th>
+                                <th>Četvrtak</th>
+                                <th>Petak</th>
+                                <th>Subota</th>
+                                <th>Nedjelja</th>
+
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @for (int i = 0; i < 10; i++)
+                            {
+                                <tr class="alert" role="alert">
+                                    <td>Termin</td>
+                                    <td>Termin</td>
+                                    <td>Termin</td>
+                                    <td></td>
+                                    <td>Termin</td>
+                                    <td></td>
+                                    <td>Termin</td>
+                                </tr>
+                            }
+
+
+                        </tbody>
+
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+
+
+</body>
+
+<!--<p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
+-->
+<!--
+<table class="table" >
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.User)
+                Html.DisplayNameFor(model => model.User)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Trainer)
+                Html.DisplayNameFor(model => model.Trainer)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.StartDate)
+                Html.DisplayNameFor(model => model.StartDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.EndDate)
+                Html.DisplayNameFor(model => model.EndDate)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.User.Id)
+                Html.DisplayFor(modelItem => item.User.Id)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Trainer.Id)
+                Html.DisplayFor(modelItem => item.Trainer.Id)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.StartDate)
+                Html.DisplayFor(modelItem => item.StartDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.EndDate)
+                Html.DisplayFor(modelItem => item.EndDate)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Edit" asp-route-id="item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="item.Id">Delete</a>
             </td>
         </tr>
 }
     </tbody>
 </table>
+-->

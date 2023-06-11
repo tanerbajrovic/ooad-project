@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FitnessFusion.Data;
 using FitnessFusion.Models;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace FitnessFusion.Controllers
 {
@@ -20,6 +22,7 @@ namespace FitnessFusion.Controllers
         }
 
         // GET: Schedule
+        [Authorize(Roles = "User,Trainer")]
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.Schedule.Include(s => s.Trainer).Include(s => s.User);
