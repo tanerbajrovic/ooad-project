@@ -3,7 +3,7 @@
         ViewData["Title"] = "Test Ciljeva";
     }
 <h1>Test Ciljeva</h1>
-@using (Html.BeginForm())
+@using (Html.BeginForm("Index", "GymProgram", FormMethod.Post))
 {
     for (int i = 0; i < Model.Count; i++)
     {
@@ -11,16 +11,16 @@
         @if (i == 0)
         {
             <div>
-                <input type="text" name="Answer[@i]" />
+                <input type="text" name="Model[@i].SubmittedAnswer[0]" />
             </div>
         }
         else if (i == 2)
         {
             <div>
-                <input type="text" name="Answer[@i].Answer1" placeholder="Masa (kg)" />
+                <input type="text" name="Model[@i].SubmittedAnswer[0]" placeholder="Masa (kg)" />
             </div>
             <div>
-                <input type="text" name="Answer[@i].Answer2" placeholder="Visina (cm)" />
+                <input type="text" name="Model[@i].SubmittedAnswer[1]" placeholder="Visina (cm)" />
             </div>
         }
         else if (i == 4 || i==8)
@@ -28,7 +28,7 @@
             @for (int j = 0; j < Model[i].Answers.Count; j++)
             {
                 <div>
-                    <input type="checkbox" name="Answer[@i].SelectedAnswers" value="@Model[i].Answers[j]" />
+                    <input type="checkbox" name="Answer[@i].SubmittedAnswer[j]" value="@Model[i].Answers[j]" />
                     @Model[i].Answers[j]
                 </div>
             }
@@ -39,7 +39,7 @@
         @for (int j = 0; j < Model[i].Answers.Count; j++)
         {
             <div>
-                @Html.RadioButton($"Answer[{i}]", Model[i].Answers[j])
+                @Html.RadioButton($"Model[{i}].SubmittedAnswer[0]", Model[i].Answers[j])
                 @Model[i].Answers[j]
             </div>
         }

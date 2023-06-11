@@ -38,7 +38,8 @@ namespace FitnessFusion.Controllers
                 Text = "1. Koliko imate godina?",
                 Answers = new List<string>
                 {
-                }
+                },
+                SubmittedAnswer = new List<string> { "" }
             },
                 new Question
             {
@@ -47,14 +48,16 @@ namespace FitnessFusion.Controllers
                 {
                     "M",
                     "Ž",
-                }
+                },
+                SubmittedAnswer = new List<string> { "" }
             },
                     new Question
             {
                 Text = "3. Masa i visina",
                 Answers = new List<string>
                 {
-                }
+                },
+                SubmittedAnswer = new List<string> { "", "" }
             },
                 new Question
             {
@@ -64,7 +67,8 @@ namespace FitnessFusion.Controllers
                     "1-3 dana sedmično",
                     "3-5 dana sedmično",
                     "5-7 dana sedmično",
-                }
+                },
+                SubmittedAnswer = new List<string> { "" }
             },
                     new Question
             {
@@ -75,7 +79,8 @@ namespace FitnessFusion.Controllers
                     "Weight loss",
                     "Building muscle",
                     "Stay in shape (mild)"
-                }
+                },
+                SubmittedAnswer = new List<string> { "", "", "", "" }
 
             },
                      new Question
@@ -87,18 +92,20 @@ namespace FitnessFusion.Controllers
                     "Zainteresovan/a sam za programe sa naglaskom na mišićnu hipertrofiju",
                     "Zainteresovan/a sam za programe koji maksimiziraju napredovanje u snazi",
                     "Svejedno mi je"
-                }
+                },
+                SubmittedAnswer = new List<string> { "" }
 
             },
                      new Question
             {
-                Text = "6. Ako ste za cilj izabrali 'Stay in shape (mild)', " +
+                Text = "7. Ako ste za cilj izabrali 'Stay in shape (mild)', " +
                 "jeste li zainteresovani za aktivnosti nižeg intenziteta ili nešto dinamičniju vježbu?",
                 Answers = new List<string>
                 {
                     "Aktivnosti niskog intenziteta",
                     "Dinamičnije aktivnosti"
-                }
+                },
+                SubmittedAnswer = new List<string> { "" }
 
             },
                             new Question
@@ -108,7 +115,8 @@ namespace FitnessFusion.Controllers
                 {
                     "DA",
                     "NE",
-                }
+                },
+                SubmittedAnswer = new List<string> { "" }
 
             },
                              new Question
@@ -120,7 +128,8 @@ namespace FitnessFusion.Controllers
                     "Hronična oboljenja",
                     "Fizički problemi",
                     "NE",
-                }
+                },
+                SubmittedAnswer = new List<string> { "", "", "", "" }
 
             }
 

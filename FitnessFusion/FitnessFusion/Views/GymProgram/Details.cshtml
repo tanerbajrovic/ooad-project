@@ -4,39 +4,37 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
 
+        h1 {
+            color: #333;
+        }
+
+        .category {
+            color: #777;
+            font-style: italic;
+        }
+
+        .description {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>@Model.Name</h1>
+    <p class="category">Category: @Model.Type</p>
+    <div class="description">
+        <p>@Html.Raw(Model.Description)</p>
+    </div>
+</body>
 <div>
-    <h4>GymProgram</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Overview)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Overview)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Type)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Type)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Programi Aktivnosti</a>
+    @if (User.IsInRole("User"))
+    {
+        <a asp-action="AddToUser" asp-route-programId="@Model.Id">Add Program</a>
+    }
 </div>

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -20,6 +21,8 @@ namespace FitnessFusion.Models
         [StringLength(50, ErrorMessage = "Overview cannot be longer than 50 characters.")]
         public string Overview { get; set; }
         public GymProgramType Type { get; set; }
+     
+        public double averageRating;
 
         #endregion
 
@@ -31,8 +34,15 @@ namespace FitnessFusion.Models
 
         #region Methods
 
-        // TODO
-
+        public void calculateAverageRating(List<double> ratingValues)
+        {
+            double sum = 0;
+            foreach(var value in ratingValues)
+            {
+                sum = sum + value; 
+            }
+            this.averageRating = sum/ratingValues.Count;
+        }
         #endregion
     }
 }

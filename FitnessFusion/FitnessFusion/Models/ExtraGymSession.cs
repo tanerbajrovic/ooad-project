@@ -26,7 +26,43 @@ namespace FitnessFusion.Models
 
         #region Methods
 
-        // TODO
+        public ExtraGymSession Clone(ExtraGymSession original)
+        {
+            ScheduleId = original.ScheduleId;   
+            StartTime = original.StartTime;
+            IsComplete = false;
+            BurnedCalories = original.BurnedCalories;
+            Duration = original.Duration;
+            Note = original.Note;
+            return this;
+        }
+
+        /*
+            Neka imamo Clone metodu unutar Schedule kontrolera:
+                public async Task<IActionResult> Clone(int id)
+                {
+                    var originalExtraGymSession = _context.ExtraGymSession.Find(id);
+                    var clone = new ExtraGymSession();
+                    clone = clone.clone(originalExtraGymSession);
+                    _context.Add(clone);
+                    _context.SaveChanges();
+                    var CloneID = clone.Id;
+                    var activities = _context.GymActivityChoice.Where(g => g.ExtraGymSessionId == id).ToList();
+                    list<GymActivityChoice> clonedActivities;
+                    foreach(var activity in activities)
+                    {
+                        GymActivityChoice clonedActivity = new GymActivityChoice();
+                        clonedActivity.clone(activity, CloneID);
+                        clonedActivities.add(clonedActivity);
+                    }
+                    foreach(var activity in clonedActivities)
+                    {
+                        _context.Add(activity);
+                    }
+                    _context.SaveChanges();
+                    ....
+                }
+        */
 
         #endregion
     }
