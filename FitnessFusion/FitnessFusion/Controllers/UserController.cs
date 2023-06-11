@@ -145,7 +145,55 @@ namespace FitnessFusion.Controllers
             //return View(await applicationDbContext.ToListAsync());
         }
         
+        /*
+            U odgovarajucem kontroleru Result klase, ovisno kako bude implementiran, bice potrebno dodati kod za postavljanje atributa
+            koje racuna API. U slucaju da se budu prikazivali svi rezultati na jednoj stranici i da imamo neki kao 'Index' kontroler,
+            kod koji bi sve potrebne API atribute postavio izgledao bi otprilike ovako:*/
+        public async Task<IActionResult> Details(int? id)
+        {
+           /* if (id == null)
+            {
+                return NotFound();
+            }
 
+            var user = await _context.User
+                .Include(u => u.ApplicationUser)
+                .Include(u => u.GymProgram)
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (user == null)
+            {
+                return NotFound();
+            }*/
+
+            return View(); //user
+        }
+
+        public async Task<IActionResult> ResultGetter()
+        {
+            List<Result> results = await _context.Result.ToListAsync();
+            foreach (var result in results)
+            {
+                String userID = _context.User.Find(result.UserId).Id;
+                int activityLevel = (int)_context.User.Find(result.UserId).ActivityCoefficient;
+                DateTime birth = _context.Users.Find(userID).DateOfBirth;
+                Char sex = _context.Users.Find(userID).Sex;
+                int age = DateTime.Today.Year - birth.Year;
+                if (DateTime.Today < birth.AddYears(age))
+                {
+                    age--;
+                }
+                String gender;
+                if (sex == 'M')
+                    gender = "male";
+                else
+                    gender = "female";
+                // ovaj dio do sada sa dobavljanjem age, gender i activity coeff iz baze se moze odvojiti u neku privatnu metodu kontrolera
+                await result.calculateBMI(age, result.Mass, result.Height);
+                await result.calculateBodyFatPercentage(age, gender, result.Mass, result.Height, result.NeckCircumference, result.WaistCircumference, result.HipsCircumference);
+                await result.calculateBMR(age, gender, result.Height, result.Mass, activityLevel);
+            }
+            return View(await _context.Result.ToListAsync());
+        }
         // GET: User/Details/5
         /*
         public async Task<IActionResult> Details(int? id)
