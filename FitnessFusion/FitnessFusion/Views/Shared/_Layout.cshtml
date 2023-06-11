@@ -26,11 +26,20 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
-                        @if (User.Identity.IsAuthenticated && User.IsInRole("User"))
+                        @if (User.Identity.IsAuthenticated)
                         {
+                            // Treba dodati if za rolu koji ce pravilno pozicionirati na dasboard
+                             // za usera
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="TestCiljeva">Test Ciljeva</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Index">Dasboard</a>
                             </li>
+
+                            //za trenera
+                            <!--
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Trainer" asp-action="Index">Dasboard</a>
+                            </li>
+                            -->
                         }
                     </ul>
                     <partial name="_LoginPartial" />
