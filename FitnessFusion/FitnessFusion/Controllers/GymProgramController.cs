@@ -9,6 +9,7 @@ using FitnessFusion.Data;
 using FitnessFusion.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 
 namespace FitnessFusion.Controllers
 {
@@ -24,19 +25,18 @@ namespace FitnessFusion.Controllers
         }
 
         // GET: GymProgram
-        public async Task<IActionResult> Index(List<Question> answers = null)
+        [HttpPost]
+        public async Task<IActionResult> Index(IFormCollection answers = null)
         {
-            List<GymProgram> programs = new List<GymProgram>();
-            if (answers != null)
-            {
-                programs = await processAnswers(answers);
-                calculateAverageRatings(programs);
-            }
-            else
-            {
-                programs = await _context.GymProgram.ToListAsync();
-                calculateAverageRatings(programs);
-            }
+            var programs = await processAnswers(answers);
+            calculateAverageRatings(programs);
+            return View(programs);
+        }
+
+        public async Task<IActionResult> AllPrograms()
+        { 
+            var programs = await _context.GymProgram.ToListAsync();
+            calculateAverageRatings(programs);
             return View(programs);
         }
 
@@ -91,15 +91,14 @@ namespace FitnessFusion.Controllers
                                     "NE",
         */
 
-        private async Task<List<GymProgram>> processAnswers(List<Question> answers)
+        private async Task<List<GymProgram>> processAnswers(IFormCollection answers)
         {
             List<GymProgram> programs = await _context.GymProgram.ToListAsync();
-            /*
-            if (int.Parse(answers[0].SubmittedAnswer[0]) > 60)
+            if (int.Parse(answers["Model[0].SubmittedAnswer[0]"]) > 60)
             {
                 programs.RemoveAll(program => program.Type == GymProgramType.Strength);
             }
-            if (answers[1].SubmittedAnswer[0] == "M")
+            if (answers["Model[1].SubmittedAnswer[0]"] == "M")
             {
                 programs.RemoveAll(program => program.Name == "Glutes&Abs");
                 programs.RemoveAll(program => program.Name == "Hourglass Body Program");
@@ -110,8 +109,9 @@ namespace FitnessFusion.Controllers
                 programs.RemoveAll(program => program.Name == "Upper Lower");
                 programs.RemoveAll(program => program.Name == "Full Body");
                 programs.RemoveAll(program => program.Name == "Power Program");
+                programs.RemoveAll(program => program.Name == "5x5");
             }
-            if (answers[3].SubmittedAnswer[0] == "1-3 dana sedmično")
+            if (answers["Model[3].SubmittedAnswer[0]"] == "1-3 dana sedmično")
             {
                 programs.RemoveAll(program => program.Name == "Push Pull Legs");
                 programs.RemoveAll(program => program.Name == "Upper Lower");
@@ -120,54 +120,54 @@ namespace FitnessFusion.Controllers
                 programs.RemoveAll(program => program.Name == "Yoga");
                 programs.RemoveAll(program => program.Name == "Pilates");
             }
-            else if(answers[3].SubmittedAnswer[0] == "3-5 dana sedmično")
+            else if (answers["Model[3].SubmittedAnswer[0]"] == "3-5 dana sedmično")
             {
                 programs.RemoveAll(program => program.Name == "Push Pull Legs");
             }
             // odabran cardio a ostali nisu
-            if ((answers[4].SubmittedAnswer[0] != "" || answers[4].SubmittedAnswer[1] != "") && answers[4].SubmittedAnswer[2] == "" && answers[4].SubmittedAnswer[3] == "")
+            if ((answers["Model[4].SubmittedAnswer[0]"] != "" || answers["Model[4].SubmittedAnswer[1]"] != "") && answers["Model[4].SubmittedAnswer[2]"] == "" && answers["Model[4].SubmittedAnswer[3]"] == "")
             {
                 programs.RemoveAll(program => program.Type != GymProgramType.Endurance);
             }
             // odabran cardio i muscle building
-            else if ((answers[4].SubmittedAnswer[0] != "" || answers[4].SubmittedAnswer[1] != "") && answers[4].SubmittedAnswer[2] != "" && answers[4].SubmittedAnswer[3] == "")
+            else if ((answers["Model[4].SubmittedAnswer[0]"] != "" || answers["Model[4].SubmittedAnswer[1]"] != "") && answers["Model[4].SubmittedAnswer[2]"] != "" && answers["Model[4].SubmittedAnswer[3]"] == "")
             {
                 programs.RemoveAll(program => program.Type == GymProgramType.Flexibility);
                 programs.RemoveAll(program => program.Type == GymProgramType.Balance);
             }
             // odabran cardio i mild exercise
-            else if ((answers[4].SubmittedAnswer[0] != "" || answers[4].SubmittedAnswer[1] != "") && answers[4].SubmittedAnswer[2] == "" && answers[4].SubmittedAnswer[3] != "")
+            else if ((answers["Model[4].SubmittedAnswer[0]"] != "" || answers["Model[4].SubmittedAnswer[1]"] != "") && answers["Model[4].SubmittedAnswer[2]"] == "" && answers["Model[4].SubmittedAnswer[3]"] != "")
             {
                 programs.RemoveAll(program => program.Type == GymProgramType.Strength);
             }
             // odabran muscle building a ostali nisu
-            else if ((answers[4].SubmittedAnswer[0] == "" || answers[4].SubmittedAnswer[1] == "") && answers[4].SubmittedAnswer[2] != "" && answers[4].SubmittedAnswer[3] == "")
+            else if ((answers["Model[4].SubmittedAnswer[0]"] == "" || answers["Model[4].SubmittedAnswer[1]"] == "") && answers["Model[4].SubmittedAnswer[2]"] != "" && answers["Model[4].SubmittedAnswer[3]"] == "")
             {
                 programs.RemoveAll(program => program.Type != GymProgramType.Strength);
             }
             // odabran muscle building i mild exercise
-            else if ((answers[4].SubmittedAnswer[0] == "" || answers[4].SubmittedAnswer[1] == "") && answers[4].SubmittedAnswer[2] != "" && answers[4].SubmittedAnswer[3] != "")
+            else if ((answers["Model[4].SubmittedAnswer[0]"] == "" || answers["Model[4].SubmittedAnswer[1]"] == "") && answers["Model[4].SubmittedAnswer[3]"] != "")
             {
                 programs.RemoveAll(program => program.Type == GymProgramType.Endurance && program.Name != "Zumba");
             }
             // odabran mild exercise a ostali nisu
-            else if ((answers[4].SubmittedAnswer[0] == "" || answers[4].SubmittedAnswer[1] == "") && answers[4].SubmittedAnswer[2] == "" && answers[4].SubmittedAnswer[3] != "")
+            else if ((answers["Model[4].SubmittedAnswer[0]"] == "" || answers["Model[4].SubmittedAnswer[1]"] == "") && answers["Model[4].SubmittedAnswer[2]"] == "" && answers["Model[4].SubmittedAnswer[3]"] != "")
             {
                 programs.RemoveAll(program => program.Type == GymProgramType.Endurance && program.Name != "Zumba");
                 programs.RemoveAll(program => program.Type == GymProgramType.Strength);
             }
-            if (answers[5].SubmittedAnswer[0] == "Zainteresovan/a sam za programe sa naglaskom na mišićnu hipertrofiju")
+            if (answers["Model[5].SubmittedAnswer[0]"] == "Zainteresovan/a sam za programe sa naglaskom na mišićnu hipertrofiju")
             {
                 programs.RemoveAll(program => program.Name == "5x5");
                 programs.RemoveAll(program => program.Name == "Power Program");
             }
-            else if (answers[5].SubmittedAnswer[0] == "Zainteresovan/a sam za programe koji maksimiziraju napredovanje u snazi")
+            else if (answers["Model[5].SubmittedAnswer[0]"] == "Zainteresovan/a sam za programe koji maksimiziraju napredovanje u snazi")
             {
                 programs.RemoveAll(program => program.Name == "Push Pull Legs");
                 programs.RemoveAll(program => program.Name == "Upper Lower");
                 programs.RemoveAll(program => program.Name == "Full Body");
             }
-            if (answers[6].SubmittedAnswer[0] == "Aktivnosti niskog intenziteta")
+            if (answers["Model[6].SubmittedAnswer[0]"] == "Aktivnosti niskog intenziteta")
             {
                 programs.RemoveAll(program => program.Name == "Zumba");
                 programs.RemoveAll(program => program.Name == "Aerobic");
@@ -177,160 +177,161 @@ namespace FitnessFusion.Controllers
                 programs.RemoveAll(program => program.Name == "Yoga");
                 programs.RemoveAll(program => program.Name == "Pilates");
             }
-            if (answers[7].SubmittedAnswer[0] == "DA")
+            if (answers["Model[7].SubmittedAnswer[0]"] == "DA")
             {
                 programs.RemoveAll(program => program.Type == GymProgramType.Endurance && program.Name != "FitnessFusion Light" && program.Name != "Zumba");
             }
             // srcana oboljenja
-            if (answers[8].SubmittedAnswer[0] != "" && answers[8].SubmittedAnswer[3] == "")
+            if (answers["Model[8].SubmittedAnswer[0]"] != "" && answers["Model[8].SubmittedAnswer[3]"] == "")
             {
                 programs.RemoveAll(program => program.Type == GymProgramType.Endurance && program.Name != "FitnessFusion Light" && program.Name != "Zumba");
                 programs.RemoveAll(program => program.Name == "Power Program");
+                programs.RemoveAll(program => program.Name == "5x5");
             }
             // hronicna oboljenja
-            if (answers[8].SubmittedAnswer[1] != "" && answers[8].SubmittedAnswer[3] == "")
+            if (answers["Model[8].SubmittedAnswer[1]"] != "" && answers["Model[8].SubmittedAnswer[3]"] == "")
             {
                 programs.RemoveAll(program => program.Type == GymProgramType.Endurance && program.Name != "FitnessFusion Light" && program.Name != "Zumba");
                 programs.RemoveAll(program => program.Name == "Power Program");
                 programs.RemoveAll(program => program.Name == "Full Body");
+                programs.RemoveAll(program => program.Name == "5x5");
             }
             // fizicki problemi
-            if (answers[8].SubmittedAnswer[2] != "" && answers[8].SubmittedAnswer[3] == "")
+            if (answers["Model[8].SubmittedAnswer[2]"] != "" && answers["Model[8].SubmittedAnswer[3]"] == "")
             {
                 programs.RemoveAll(program => program.Type == GymProgramType.Strength);
                 programs.RemoveAll(program => program.Type == GymProgramType.Endurance && program.Name != "Zumba");
             }
-            */
             return programs;
-        } 
+        }
 
-        
+
         // GET: GymProgram/Details/5
         public async Task<IActionResult> Details(int? id)
-    {
-        if (id == null)
         {
-            return NotFound();
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var gymProgram = await _context.GymProgram
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (gymProgram == null)
+            {
+                return NotFound();
+            }
+
+            return View(gymProgram);
         }
 
-        var gymProgram = await _context.GymProgram
-            .FirstOrDefaultAsync(m => m.Id == id);
-        if (gymProgram == null)
+        /*
+
+        // GET: GymProgram/Create
+        public IActionResult Create()
         {
-            return NotFound();
+            return View();
         }
 
-        return View(gymProgram);
-    }
-
-    /*
-
-    // GET: GymProgram/Create
-    public IActionResult Create()
-    {
-        return View();
-    }
-
-    // POST: GymProgram/Create
-    // To protect from overposting attacks, enable the specific properties you want to bind to.
-    // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create([Bind("Id,Name,Description,Overview,Type")] GymProgram gymProgram)
-    {
-        if (ModelState.IsValid)
+        // POST: GymProgram/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("Id,Name,Description,Overview,Type")] GymProgram gymProgram)
         {
-            _context.Add(gymProgram);
+            if (ModelState.IsValid)
+            {
+                _context.Add(gymProgram);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(gymProgram);
+        }
+
+        // GET: GymProgram/Edit/5
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var gymProgram = await _context.GymProgram.FindAsync(id);
+            if (gymProgram == null)
+            {
+                return NotFound();
+            }
+            return View(gymProgram);
+        }
+
+        // POST: GymProgram/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Overview,Type")] GymProgram gymProgram)
+        {
+            if (id != gymProgram.Id)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(gymProgram);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!GymProgramExists(gymProgram.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            return View(gymProgram);
+        }
+
+        // GET: GymProgram/Delete/5
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var gymProgram = await _context.GymProgram
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (gymProgram == null)
+            {
+                return NotFound();
+            }
+
+            return View(gymProgram);
+        }
+
+        // POST: GymProgram/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var gymProgram = await _context.GymProgram.FindAsync(id);
+            _context.GymProgram.Remove(gymProgram);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-        return View(gymProgram);
-    }
 
-    // GET: GymProgram/Edit/5
-    public async Task<IActionResult> Edit(int? id)
-    {
-        if (id == null)
+        private bool GymProgramExists(int id)
         {
-            return NotFound();
+            return _context.GymProgram.Any(e => e.Id == id);
         }
-
-        var gymProgram = await _context.GymProgram.FindAsync(id);
-        if (gymProgram == null)
-        {
-            return NotFound();
-        }
-        return View(gymProgram);
-    }
-
-    // POST: GymProgram/Edit/5
-    // To protect from overposting attacks, enable the specific properties you want to bind to.
-    // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Overview,Type")] GymProgram gymProgram)
-    {
-        if (id != gymProgram.Id)
-        {
-            return NotFound();
-        }
-
-        if (ModelState.IsValid)
-        {
-            try
-            {
-                _context.Update(gymProgram);
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!GymProgramExists(gymProgram.Id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-            return RedirectToAction(nameof(Index));
-        }
-        return View(gymProgram);
-    }
-
-    // GET: GymProgram/Delete/5
-    public async Task<IActionResult> Delete(int? id)
-    {
-        if (id == null)
-        {
-            return NotFound();
-        }
-
-        var gymProgram = await _context.GymProgram
-            .FirstOrDefaultAsync(m => m.Id == id);
-        if (gymProgram == null)
-        {
-            return NotFound();
-        }
-
-        return View(gymProgram);
-    }
-
-    // POST: GymProgram/Delete/5
-    [HttpPost, ActionName("Delete")]
-    [ValidateAntiForgeryToken]
-    public async Task<IActionResult> DeleteConfirmed(int id)
-    {
-        var gymProgram = await _context.GymProgram.FindAsync(id);
-        _context.GymProgram.Remove(gymProgram);
-        await _context.SaveChangesAsync();
-        return RedirectToAction(nameof(Index));
-    }
-
-    private bool GymProgramExists(int id)
-    {
-        return _context.GymProgram.Any(e => e.Id == id);
-    }
-    */
+        */
     }
 }
