@@ -15,9 +15,9 @@ namespace FitnessFusion.Controllers
     public class GymProgramController : Controller
     {
         private readonly ApplicationDbContext _context;
-        private readonly UserManager<User> _userManager;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public GymProgramController(ApplicationDbContext context, UserManager<User> userManager)
+        public GymProgramController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
             _userManager = userManager;
@@ -38,6 +38,20 @@ namespace FitnessFusion.Controllers
                 calculateAverageRatings(programs);
             }
             return View(programs);
+        }
+
+        [Authorize]
+        public async Task<IActionResult> AddToUser(int programId)
+        {
+            var currentUser = await _userManager.GetUserAsync(User);
+            var id = currentUser.Id;
+            var user = await _context.User.FindAsync(id);
+            if (currentUser != null)
+            {
+                user.GymProgramId = programId;
+                await _userManager.UpdateAsync(currentUser);
+            }
+            return RedirectToAction("Details", "GymProgram", new { id = programId });
         }
 
         private void calculateAverageRatings(List<GymProgram> programs)
@@ -80,6 +94,7 @@ namespace FitnessFusion.Controllers
         private async Task<List<GymProgram>> processAnswers(List<Question> answers)
         {
             List<GymProgram> programs = await _context.GymProgram.ToListAsync();
+            /*
             if (int.Parse(answers[0].SubmittedAnswer[0]) > 60)
             {
                 programs.RemoveAll(program => program.Type == GymProgramType.Strength);
@@ -185,10 +200,11 @@ namespace FitnessFusion.Controllers
                 programs.RemoveAll(program => program.Type == GymProgramType.Strength);
                 programs.RemoveAll(program => program.Type == GymProgramType.Endurance && program.Name != "Zumba");
             }
+            */
             return programs;
         } 
 
-        /*
+        
         // GET: GymProgram/Details/5
         public async Task<IActionResult> Details(int? id)
     {
@@ -205,18 +221,6 @@ namespace FitnessFusion.Controllers
         }
 
         return View(gymProgram);
-    }
-
-    [Authorize]
-    public async Task<IActionResult> AddToUser(int programId)
-    {
-        var currentUser = await _userManager.GetUserAsync(User);
-        if (currentUser != null)
-        {
-            currentUser.GymProgramId = programId;
-            await _userManager.UpdateAsync(currentUser);
-        }
-        return RedirectToAction("Details", "GymProgram", new { id = programId });
     }
 
     /*

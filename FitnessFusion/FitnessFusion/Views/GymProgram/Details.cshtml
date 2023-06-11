@@ -7,34 +7,40 @@
 <head>
     <style>
         body {
-            font-family: Arial, sans-serif;
-        }
-
-        h1 {
-            color: #333;
+            background-color: #1B1D1F;
         }
 
         .category {
-            color: #777;
+            color: #ffffff;
             font-style: italic;
         }
 
         .description {
             margin-top: 20px;
+            color: #ffffff;
+        }
+
+        .btn-custom {
+            background-color: #ff4300;
+            color: #ffffff;
         }
     </style>
 </head>
 <body>
-    <h1>@Model.Name</h1>
+    <h1 style="color: #ff4300;">@Model.Name</h1>
     <p class="category">Category: @Model.Type</p>
     <div class="description">
         <p>@Html.Raw(Model.Description)</p>
     </div>
 </body>
 <div>
-    <a asp-action="Index">Programi Aktivnosti</a>
+    <form asp-action="Index">
+        <button type="submit" class="btn btn-custom">Programi Aktivnosti</button>
+    </form>
     @if (User.IsInRole("User"))
     {
-        <a asp-action="AddToUser" asp-route-programId="@Model.Id">Add Program</a>
+        <form asp-action="AddToUser" asp-route-id="@Model.Id">
+            <button type="submit" class="btn btn-custom">Add Program</button>
+        </form>
     }
 </div>
