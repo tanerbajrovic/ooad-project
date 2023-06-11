@@ -1,0 +1,25 @@
+﻿@model FitnessFusion.Models.GymProgramType
+
+@{
+    string displayName = string.Empty;
+    switch (Model)
+    {
+        case FitnessFusion.Models.GymProgramType.Strength:
+            displayName = "Strength Program";
+            break;
+        case FitnessFusion.Models.GymProgramType.Endurance:
+            displayName = "Endurance Program";
+            break;
+        case FitnessFusion.Models.GymProgramType.Flexibility:
+            displayName = "Flexibility Program";
+            break;
+        case FitnessFusion.Models.GymProgramType.Balance:
+            displayName = "Balance Program";
+            break;
+        default:
+            displayName = Model.ToString();
+            break;
+    }
+}
+
+@displayName

@@ -29,7 +29,22 @@ namespace FitnessFusion.Models
 
         #region Methods
 
-        // TODO
+        // extraID is provided when clone method is called from ExtraGymSession class, and trainingID when called from Training class
+        public GymActivityChoice clone(GymActivityChoice original, int extraID=-1, int trainingID=-1)
+        {
+            TrainingId = original.TrainingId;
+            Training = original.Training;
+            if(extraID!=-1)
+            {
+                ExtraGymSessionId = extraID;
+            }
+            else
+            {
+                TrainingId = trainingID;
+            }
+            GymActivityId = original.GymActivityId;
+            return this;
+        }
 
         #endregion
     }

@@ -16,6 +16,7 @@ namespace FitnessFusion.Models
         [Display(Name = "Health Issues")]
         public List<HealthIssueType> HealthIssues { get; set; } = new List<HealthIssueType>();
         [DisplayName("Activity Coefficient")]
+        [Range(1, 6, ErrorMessage = "Activity coefficient must be between 1 and 6.")]
         public double ActivityCoefficient { get; set; }
 
         #endregion
