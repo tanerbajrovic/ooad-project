@@ -85,6 +85,12 @@ namespace FitnessFusion.Areas.Identity.Pages.Account
             [Display(Name = "Date of Birth")]
             public DateTime DateOfBirth { get; set; }
 
+            // For choosing a role in the system
+            [Required]
+            [RegularExpression("User|Trainer", ErrorMessage = "You can be either a User or a Trainer.")]
+            [Display(Name = "Are you a User or a Trainer?")]
+            public string SelectedRole { get; set; }
+
         }
 
         public async Task OnGetAsync(string returnUrl = null)
@@ -112,29 +118,26 @@ namespace FitnessFusion.Areas.Identity.Pages.Account
                 {
                     _logger.LogInformation("User created a new account with password.");
 
-                    // Every registered user is 'User' by default
-                    await _userManager.AddToRoleAsync(user, "User");
-
-                    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                    code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-                    var callbackUrl = Url.Page(
-                        "/Account/ConfirmEmail",
-                        pageHandler: null,
-                        values: new { area = "Identity", userId = user.Id, code = code, returnUrl = returnUrl },
-                        protocol: Request.Scheme);
-
-                    await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                        $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
-
-                    if (_userManager.Options.SignIn.RequireConfirmedAccount)
+                    // Assigning a role to a user
+                    var userSelectedRole = "User";
+                    if (Input.SelectedRole.Equals("Trainer"))
                     {
-                        return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });
+                        userSelectedRole = "Trainer";
                     }
-                    else
+                    await _userManager.AddToRoleAsync(user, userSelectedRole);
+                    await _signInManager.SignInAsync(user, isPersistent: false);
+
+                    // Redirecting to different pages depending on role
+                    var redirectPagePath = "Homes/Index";
+                    if (User.IsInRole("User"))
                     {
-                        await _signInManager.SignInAsync(user, isPersistent: false);
-                        return LocalRedirect(returnUrl);
+                        redirectPagePath = "User/Index";
                     }
+                    if (User.IsInRole("Trainer"))
+                    {
+                        redirectPagePath = "Trainer/Index";
+                    }
+                    return Redirect(redirectPagePath);
                 }
                 foreach (var error in result.Errors)
                 {
@@ -144,6 +147,20 @@ namespace FitnessFusion.Areas.Identity.Pages.Account
 
             // If we got this far, something failed, redisplay form
             return Page();
+        }
+
+        private User CreateUser()
+        {
+            //try
+            //{
+            //    return Activator.CreateInstance<User>();
+            //}
+            throw new System.NotImplementedException();
+        }
+
+        private Trainer CreateTrainer()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

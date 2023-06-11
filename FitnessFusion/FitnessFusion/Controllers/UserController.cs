@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace FitnessFusion.Controllers
 {
 
-    [Authorize]
+    [Authorize(Roles = "User")]
     public class UserController : Controller
     {
         private readonly ApplicationDbContext _context;
