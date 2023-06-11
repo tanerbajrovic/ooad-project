@@ -25,8 +25,10 @@ namespace FitnessFusion.Controllers
         }
 
         // GET: GymProgram
+        [Authorize(Roles = "User")]
         [HttpPost]
         public async Task<IActionResult> Index(IFormCollection answers = null)
+
         {
             var programs = await processAnswers(answers);
             calculateAverageRatings(programs);
@@ -40,7 +42,7 @@ namespace FitnessFusion.Controllers
             return View(programs);
         }
 
-        [Authorize]
+        [Authorize(Roles = "User")]
         public async Task<IActionResult> AddToUser(int programId)
         {
             var currentUser = await _userManager.GetUserAsync(User);
@@ -54,6 +56,7 @@ namespace FitnessFusion.Controllers
             return RedirectToAction("Details", "GymProgram", new { id = programId });
         }
 
+        [Authorize(Roles = "User")]
         private void calculateAverageRatings(List<GymProgram> programs)
         {
             foreach (var program in programs)
@@ -90,8 +93,9 @@ namespace FitnessFusion.Controllers
                                     "Fizički problemi",
                                     "NE",
         */
-
+        [Authorize(Roles = "User")]
         private async Task<List<GymProgram>> processAnswers(IFormCollection answers)
+
         {
             List<GymProgram> programs = await _context.GymProgram.ToListAsync();
             if (int.Parse(answers["Model[0].SubmittedAnswer[0]"]) > 60)
@@ -207,6 +211,7 @@ namespace FitnessFusion.Controllers
 
 
         // GET: GymProgram/Details/5
+        [Authorize(Roles = "User")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
