@@ -50,13 +50,15 @@ namespace FitnessFusion.Controllers
         }
 
         // GET: Schedule/Create
+        [Authorize(Roles = "Trainer")]
         public IActionResult Create()
         {
-            ViewData["TrainerId"] = new SelectList(_context.Set<ApplicationUser>(), "Id", "Id");
-            ViewData["UserId"] = new SelectList(_context.Set<ApplicationUser>(), "Id", "Id");
+            ViewData["TrainerId"] = new SelectList(_context.Set<Trainer>(), "Id", "Id");
+            ViewData["UserId"] = new SelectList(_context.Set<User>(), "Id", "Id");
             return View();
         }
 
+        [Authorize(Roles = "Trainer")]
         // POST: Schedule/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -70,8 +72,8 @@ namespace FitnessFusion.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["TrainerId"] = new SelectList(_context.Set<ApplicationUser>(), "Id", "Id", schedule.TrainerId);
-            ViewData["UserId"] = new SelectList(_context.Set<ApplicationUser>(), "Id", "Id", schedule.UserId);
+            ViewData["TrainerId"] = new SelectList(_context.Set<Trainer>(), "Id", "Id", schedule.TrainerId);
+            ViewData["UserId"] = new SelectList(_context.Set<User>(), "Id", "Id", schedule.UserId);
             return View(schedule);
         }
 
@@ -98,6 +100,7 @@ namespace FitnessFusion.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "User,Trainer")]
         public async Task<IActionResult> Edit(int id, [Bind("Id,UserId,TrainerId,StartDate,EndDate")] Schedule schedule)
         {
             if (id != schedule.Id)
@@ -125,12 +128,13 @@ namespace FitnessFusion.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["TrainerId"] = new SelectList(_context.Set<ApplicationUser>(), "Id", "Id", schedule.TrainerId);
-            ViewData["UserId"] = new SelectList(_context.Set<ApplicationUser>(), "Id", "Id", schedule.UserId);
+            ViewData["TrainerId"] = new SelectList(_context.Set<Trainer>(), "Id", "Id", schedule.TrainerId);
+            ViewData["UserId"] = new SelectList(_context.Set<User>(), "Id", "Id", schedule.UserId);
             return View(schedule);
         }
 
         // GET: Schedule/Delete/5
+        [Authorize(Roles = "Trainer")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -153,6 +157,7 @@ namespace FitnessFusion.Controllers
         // POST: Schedule/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Trainer")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var schedule = await _context.Schedule.FindAsync(id);
