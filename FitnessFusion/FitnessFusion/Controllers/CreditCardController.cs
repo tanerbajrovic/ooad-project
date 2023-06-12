@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FitnessFusion.Data;
 using FitnessFusion.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FitnessFusion.Controllers
 {
+    [Authorize(Roles = "User")]
     public class CreditCardController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -48,7 +50,7 @@ namespace FitnessFusion.Controllers
         // GET: CreditCard/Create
         public IActionResult Create()
         {
-            ViewData["UserId"] = new SelectList(_context.Set<ApplicationUser>(), "Id", "Id");
+            ViewData["UserId"] = new SelectList(_context.Set<User>(), "Id", "Id");
             return View();
         }
 
@@ -65,7 +67,7 @@ namespace FitnessFusion.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["UserId"] = new SelectList(_context.Set<ApplicationUser>(), "Id", "Id", creditCard.UserId);
+            ViewData["UserId"] = new SelectList(_context.Set<User>(), "Id", "Id", creditCard.UserId);
             return View(creditCard);
         }
 
@@ -82,7 +84,7 @@ namespace FitnessFusion.Controllers
             {
                 return NotFound();
             }
-            ViewData["UserId"] = new SelectList(_context.Set<ApplicationUser>(), "Id", "Id", creditCard.UserId);
+            ViewData["UserId"] = new SelectList(_context.Set<User>(), "Id", "Id", creditCard.UserId);
             return View(creditCard);
         }
 
@@ -118,7 +120,7 @@ namespace FitnessFusion.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["UserId"] = new SelectList(_context.Set<ApplicationUser>(), "Id", "Id", creditCard.UserId);
+            ViewData["UserId"] = new SelectList(_context.Set<User>(), "Id", "Id", creditCard.UserId);
             return View(creditCard);
         }
 
