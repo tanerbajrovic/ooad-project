@@ -30,6 +30,7 @@ namespace FitnessFusion.Controllers
         }
 
         // GET: Schedule/Details/5
+        [Authorize(Roles ="User,Trainer")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -78,6 +79,7 @@ namespace FitnessFusion.Controllers
         }
 
         // GET: Schedule/Edit/5
+        [Authorize(Roles = "User,Trainer")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
