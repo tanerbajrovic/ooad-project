@@ -1,14 +1,12 @@
-﻿using Microsoft.VisualBasic;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Diagnostics.Eventing.Reader;
 
 namespace FitnessFusion.Models
 {
-    public class Schedule
+    public class Schedule : ISchedule
     {
         #region Properties
 
@@ -39,7 +37,13 @@ namespace FitnessFusion.Models
 
         #region Methods
 
-        // TODO
+        public ISchedule AddGymSession(GymSession session)
+        {
+            // Setting initial attributes
+            session.ScheduleId = Id;
+            session.Schedule = this;
+            return this;
+        }
 
         #endregion
     }
