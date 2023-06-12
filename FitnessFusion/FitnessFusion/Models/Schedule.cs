@@ -1,10 +1,8 @@
-﻿using Microsoft.VisualBasic;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Diagnostics.Eventing.Reader;
 
 namespace FitnessFusion.Models
 {
@@ -41,8 +39,10 @@ namespace FitnessFusion.Models
 
         public ISchedule AddGymSession(GymSession session)
         {
-            throw new NotImplementedException();
-
+            // Setting initial attributes
+            session.ScheduleId = Id;
+            session.Schedule = this;
+            return this;
         }
 
         #endregion

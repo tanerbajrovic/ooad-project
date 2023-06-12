@@ -23,7 +23,7 @@ namespace FitnessFusion.Models
 
         public virtual ISchedule AddGymSession(GymSession session)
         {
-            throw new NotImplementedException();
+            return decoratedSchedule.AddGymSession(session);
         }
 
         #endregion

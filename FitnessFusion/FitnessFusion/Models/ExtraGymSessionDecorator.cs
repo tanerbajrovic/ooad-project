@@ -9,5 +9,14 @@
         }
 
         #endregion
+
+        #region Methods
+
+        public override ISchedule AddGymSession(GymSession session)
+        {
+            return decoratedSchedule;
+        }
+
+        #endregion
     }
 }
